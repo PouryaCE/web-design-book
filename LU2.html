@@ -1,0 +1,3680 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f8f7f4">
+<meta name="description" content="ابر جزوه برنامه‌نویسی پایتون ۳.۱۴ - پودمان دوم | واحد یادگیری ۲">
+<title>🐍 ابر جزوه پایتون ۳.۱۴ | پودمان دوم</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════
+   🎨 DESIGN SYSTEM — ABAR JOZVEH PYTHON 3.14 (UNIT 2)
+   ═══════════════════════════════════════════════════════════ */
+
+:root{
+  --brand-1:#3b82f6;
+  --brand-2:#8b5cf6;
+  --brand-3:#06b6d4;
+  --brand-glow:rgba(59,130,246,.4);
+  --brand-soft:rgba(59,130,246,.08);
+
+  --accent-purple:#8b5cf6;
+  --accent-blue:#3b82f6;
+  --accent-cyan:#06b6d4;
+  --accent-emerald:#10b981;
+  --accent-rose:#f43f5e;
+  --accent-amber:#f59e0b;
+
+  --bg-0:#fefefe;
+  --bg-1:#f8f7f4;
+  --bg-2:#f1efea;
+  --bg-3:#e9e6df;
+  --surface:rgba(255,255,255,.75);
+  --surface-solid:#fff;
+  --surface-hover:rgba(255,255,255,.95);
+  --surface-inset:rgba(248,247,244,.6);
+
+  --border:rgba(15,14,23,.08);
+  --border-strong:rgba(15,14,23,.15);
+  --border-dashed:rgba(15,14,23,.12);
+
+  --text:#0f0e17;
+  --text-2:#4a4854;
+  --text-3:#78767f;
+  --text-4:#a8a6af;
+
+  --code-bg:#1a1825;
+  --code-bg-2:#14121d;
+  --code-bg-3:#0f0e18;
+  --code-border:#2a2735;
+  --code-gutter:#0f0e18;
+  --code-text:#e8edf4;
+
+  --blur:20px;
+  --blur-strong:28px;
+  --radius-xs:6px;
+  --radius-sm:10px;
+  --radius:16px;
+  --radius-lg:24px;
+  --radius-xl:32px;
+  --radius-full:999px;
+
+  --shadow-xs:0 1px 3px rgba(15,14,23,.05);
+  --shadow-sm:0 2px 8px rgba(15,14,23,.06);
+  --shadow:0 8px 32px rgba(15,14,23,.08);
+  --shadow-lg:0 20px 60px rgba(15,14,23,.12);
+  --shadow-xl:0 30px 80px rgba(15,14,23,.18);
+  --shadow-glow:0 8px 40px var(--brand-glow);
+
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-spring:cubic-bezier(.34,1.56,.64,1);
+  --ease-smooth:cubic-bezier(.4,0,.2,1);
+
+  --gap-xs:6px;
+  --gap-sm:12px;
+  --gap:20px;
+  --gap-lg:32px;
+  --gap-xl:48px;
+}
+
+[data-theme="dark"]{
+  --bg-0:#08070f;
+  --bg-1:#0f0e17;
+  --bg-2:#181622;
+  --bg-3:#1e1c2a;
+  --surface:rgba(30,28,42,.65);
+  --surface-solid:#1a1825;
+  --surface-hover:rgba(40,37,55,.85);
+  --surface-inset:rgba(10,9,18,.5);
+
+  --border:rgba(255,255,255,.08);
+  --border-strong:rgba(255,255,255,.16);
+  --border-dashed:rgba(255,255,255,.1);
+
+  --text:#f5f4f8;
+  --text-2:#b8b6c4;
+  --text-3:#85828f;
+  --text-4:#5f5c6b;
+
+  --code-bg:#0d0c15;
+  --code-bg-2:#080710;
+  --code-bg-3:#050408;
+  --code-border:#252338;
+
+  --shadow-xs:0 1px 3px rgba(0,0,0,.3);
+  --shadow-sm:0 2px 8px rgba(0,0,0,.35);
+  --shadow:0 8px 32px rgba(0,0,0,.45);
+  --shadow-lg:0 20px 60px rgba(0,0,0,.55);
+  --shadow-xl:0 30px 80px rgba(0,0,0,.65);
+}
+
+/* ───── 2. RESET & BASE ───── */
+*,*::before,*::after{
+  margin:0;padding:0;box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:90px;
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  font-family:'Vazirmatn',system-ui,-apple-system,sans-serif;
+  background:var(--bg-1);
+  color:var(--text);
+  line-height:1.9;
+  font-size:clamp(14px,1.2vw + 10px,16.5px);
+  overflow-x:hidden;
+  min-height:100dvh;
+  word-wrap:break-word;
+  overflow-wrap:break-word;
+  transition:background .4s var(--ease),color .4s var(--ease);
+  position:relative;
+  font-feature-settings:"ss01","ss02";
+}
+
+body::before,body::after{
+  content:"";
+  position:fixed;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:0;
+  filter:blur(100px);
+  opacity:.35;
+  transition:opacity .4s;
+}
+body::before{
+  width:min(600px,80vw);height:min(600px,80vw);
+  background:radial-gradient(circle,var(--brand-1),transparent 70%);
+  top:-200px;right:-100px;
+  animation:float1 24s ease-in-out infinite;
+}
+body::after{
+  width:min(500px,70vw);height:min(500px,70vw);
+  background:radial-gradient(circle,var(--accent-purple),transparent 70%);
+  bottom:-150px;left:-150px;
+  animation:float2 28s ease-in-out infinite;
+}
+[data-theme="dark"] body::before{opacity:.15}
+[data-theme="dark"] body::after{opacity:.15}
+
+@keyframes float1{
+  0%,100%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(-60px,80px) scale(1.1)}
+}
+@keyframes float2{
+  0%,100%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(80px,-60px) scale(1.15)}
+}
+
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track{background:var(--bg-2)}
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,var(--brand-1),var(--brand-2));
+  border-radius:8px;
+  border:3px solid var(--bg-2);
+}
+::-webkit-scrollbar-thumb:hover{
+  background:linear-gradient(180deg,var(--brand-2),var(--brand-1));
+}
+
+::selection{background:var(--brand-1);color:#fff;}
+
+/* ───── 3. TOP BAR ───── */
+.top-bar{
+  position:fixed;top:0;left:0;right:0;height:66px;
+  background:var(--surface);
+  backdrop-filter:blur(var(--blur-strong)) saturate(180%);
+  -webkit-backdrop-filter:blur(var(--blur-strong)) saturate(180%);
+  border-bottom:1px solid var(--border);
+  z-index:1000;display:flex;align-items:center;
+  padding:0 clamp(12px,2.5vw,20px);gap:12px;
+  transition:background .3s var(--ease),border-color .3s var(--ease);
+}
+
+.top-bar .logo{
+  display:flex;align-items:center;gap:10px;
+  font-weight:800;font-size:14px;color:var(--text);
+  flex-shrink:0;padding-left:14px;border-left:1px solid var(--border);
+  height:38px;cursor:default;
+}
+.top-bar .logo .icon{
+  width:38px;height:38px;border-radius:12px;
+  background:linear-gradient(135deg,var(--brand-1),var(--brand-2));
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+  box-shadow:0 4px 16px var(--brand-glow), inset 0 -2px 6px rgba(0,0,0,.15), inset 0 2px 6px rgba(255,255,255,.25);
+  animation:logoPulse 4s ease-in-out infinite;
+}
+@keyframes logoPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06) rotate(-3deg)}}
+.top-bar .logo .text{display:none;line-height:1.2;}
+.top-bar .logo .text .line-1{font-size:13px;font-weight:900;display:block;}
+.top-bar .logo .text .line-2{font-size:10.5px;font-weight:600;color:var(--text-3);display:block;margin-top:1px;}
+@media (min-width:768px){.top-bar .logo .text{display:block}}
+
+.top-bar nav.topnav{
+  display:flex;gap:2px;flex:1;overflow-x:auto;overflow-y:hidden;
+  scrollbar-width:none;-ms-overflow-style:none;padding:4px 0;
+  scroll-behavior:smooth;
+  mask-image:linear-gradient(90deg,transparent 0,#000 20px,#000 calc(100% - 20px),transparent 100%);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 20px,#000 calc(100% - 20px),transparent 100%);
+}
+.top-bar nav.topnav::-webkit-scrollbar{display:none}
+.top-bar nav.topnav a{
+  font-size:12px;font-weight:600;color:var(--text-2);text-decoration:none;
+  padding:7px 10px;border-radius:9px;white-space:nowrap;
+  transition:.22s var(--ease);position:relative;
+  display:inline-flex;align-items:center;gap:5px;border:1px solid transparent;
+}
+.top-bar nav.topnav a .nav-ic{font-size:13px;line-height:1}
+.top-bar nav.topnav a:hover{color:var(--text);background:var(--surface-hover);transform:translateY(-1px);}
+.top-bar nav.topnav a.active{color:#fff;background:linear-gradient(135deg,var(--brand-1),var(--brand-2));box-shadow:0 4px 14px var(--brand-glow);}
+
+.theme-toggle{
+  width:40px;height:40px;border-radius:12px;border:1px solid var(--border);
+  background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:18px;transition:.3s var(--ease-spring);flex-shrink:0;position:relative;overflow:hidden;color:var(--text);padding:0;
+}
+.theme-toggle:hover{border-color:var(--brand-1);transform:translateY(-1px) scale(1.05);}
+.theme-toggle .toggle-icon{display:flex;align-items:center;justify-content:center;width:100%;height:100%;transition:transform .5s var(--ease-spring);}
+.theme-toggle:hover .toggle-icon{transform:rotate(20deg);}
+
+/* ───── 4. PROGRESS BAR ───── */
+.progress-bar{position:fixed;top:66px;left:0;right:0;height:3px;background:transparent;z-index:1001;pointer-events:none;}
+.progress-bar .fill{height:100%;width:0%;border-radius:0 3px 3px 0;background:linear-gradient(90deg,var(--brand-1),var(--brand-2),var(--accent-purple));transition:width .1s linear;box-shadow:0 0 12px var(--brand-glow);}
+
+/* ───── 8. BOOKLET LAYOUT ───── */
+.booklet{position:relative;z-index:1;width:100%;max-width:920px;margin:0 auto;padding:110px clamp(14px,3vw,24px) 80px;}
+
+/* ───── 9. COVER ───── */
+.cover{
+  position:relative;border-radius:var(--radius-xl);padding:clamp(40px,7vw,72px) clamp(24px,5vw,56px);
+  color:#fff;overflow:hidden;margin-bottom:clamp(32px,6vw,56px);isolation:isolate;
+  box-shadow:0 30px 80px rgba(59,130,246,.25),0 10px 30px rgba(139,92,246,.15);
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,255,255,.2) 0%,transparent 40%),
+    radial-gradient(circle at 80% 80%,rgba(139,92,246,.4) 0%,transparent 50%),
+    linear-gradient(135deg,#3b82f6 0%,#8b5cf6 40%,#06b6d4 100%);
+  background-size:200% 200%;animation:coverGradient 14s ease infinite;
+}
+@keyframes coverGradient{0%,100%{background-position:0% 0%}50%{background-position:100% 100%}}
+.cover::before{content:"";position:absolute;top:-100px;right:-100px;width:300px;height:300px;border:2px dashed rgba(255,255,255,.25);border-radius:50%;animation:spin 45s linear infinite;z-index:-1;}
+.cover::after{content:"📦";position:absolute;bottom:-40px;left:-20px;font-size:220px;opacity:.08;transform:rotate(-15deg);z-index:-1;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.cover-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.18);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.3);padding:8px 18px;border-radius:var(--radius-full);font-size:13px;font-weight:700;margin-bottom:24px;}
+.cover-badge::before{content:"";width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 12px #4ade80;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.2)}}
+.cover h1{font-size:clamp(26px,4.5vw + 8px,52px);font-weight:900;line-height:1.25;margin-bottom:16px;text-shadow:0 4px 30px rgba(0,0,0,.25);letter-spacing:-.5px;}
+.cover .subtitle{font-size:clamp(14px,1.8vw + 8px,20px);font-weight:500;opacity:.95;margin-bottom:32px;}
+.cover-meta{display:flex;flex-wrap:wrap;gap:10px;padding-top:24px;border-top:1px solid rgba(255,255,255,.2);}
+.cover-meta div{display:flex;align-items:center;gap:10px;font-size:clamp(12px,1.3vw + 8px,14.5px);background:rgba(255,255,255,.15);backdrop-filter:blur(10px);padding:10px 18px;border-radius:12px;flex:1 1 auto;min-width:0;border:1px solid rgba(255,255,255,.1);font-weight:600;transition:.3s;}
+.cover-meta div:hover{background:rgba(255,255,255,.22);transform:translateY(-2px);}
+.cover-meta .ic{font-size:18px;flex-shrink:0;}
+
+.cover-guide{display:flex;gap:16px;align-items:center;margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.2);}
+.cover-guide-avatar{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:6px;}
+.cover-guide-avatar .avatar-emoji{width:66px;height:66px;background:rgba(255,255,255,.2);border:2px solid rgba(255,255,255,.4);border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:36px;backdrop-filter:blur(10px);animation:guideFloat 3.5s ease-in-out infinite;}
+.cover-guide-avatar .avatar-name{font-size:11px;font-weight:800;color:rgba(255,255,255,.9);}
+.cover-guide-bubble{flex:1;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:20px;border-top-right-radius:6px;padding:16px 20px;color:#fff;font-size:14.5px;line-height:1.9;backdrop-filter:blur(10px);}
+.cover-guide-bubble strong{color:#fff}
+
+/* ───── 10. GUIDE CHARACTER ───── */
+.guide{display:flex;gap:14px;margin:24px 0;align-items:flex-start;animation:guideEnter .5s var(--ease-spring) both;}
+@keyframes guideEnter{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+.guide-avatar{flex-shrink:0;width:54px;height:54px;border-radius:16px;background:linear-gradient(135deg,var(--brand-1),var(--brand-2));display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 8px 20px var(--brand-glow), inset 0 -3px 8px rgba(0,0,0,.15), inset 0 3px 8px rgba(255,255,255,.25);animation:guideFloat 3.5s ease-in-out infinite;position:relative;}
+.guide-avatar::after{content:"";position:absolute;top:6px;right:8px;width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;animation:pulse 2s infinite;}
+@keyframes guideFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-4px) rotate(-3deg)}}
+.guide-bubble{flex:1;min-width:0;background:var(--surface);backdrop-filter:blur(var(--blur));-webkit-backdrop-filter:blur(var(--blur));border:1px solid var(--border);border-radius:var(--radius-lg);border-top-right-radius:6px;padding:16px 20px;font-size:14.5px;line-height:1.95;color:var(--text-2);position:relative;box-shadow:var(--shadow-sm);transition:.3s var(--ease);}
+.guide-bubble strong{color:var(--text);font-weight:800}
+.guide-bubble em{color:var(--brand-2);font-style:normal;font-weight:700;background:linear-gradient(180deg,transparent 60%,rgba(59,130,246,.15) 60%);padding:0 2px;}
+.guide[data-mood="think"] .guide-avatar{background:linear-gradient(135deg,var(--accent-purple),var(--accent-blue));box-shadow:0 8px 20px rgba(139,92,246,.4);}
+.guide[data-mood="warn"] .guide-avatar{background:linear-gradient(135deg,#f59e0b,#d97706);box-shadow:0 8px 20px rgba(245,158,11,.4);}
+.guide[data-mood="happy"] .guide-avatar{background:linear-gradient(135deg,var(--accent-emerald),var(--accent-cyan));box-shadow:0 8px 20px rgba(16,185,129,.4);animation:guideBounce 1.5s ease-in-out infinite;}
+@keyframes guideBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px) scale(1.05)}}
+@media (hover:hover){.guide-bubble:hover{transform:translateX(-4px);border-color:var(--brand-1);box-shadow:var(--shadow);}}
+@media (max-width:520px){.guide-avatar{width:44px;height:44px;font-size:22px}.guide-bubble{padding:12px 16px;font-size:13.5px;line-height:1.85}}
+
+/* ───── 11. TOC ───── */
+.toc{background:var(--surface);backdrop-filter:blur(var(--blur)) saturate(180%);-webkit-backdrop-filter:blur(var(--blur)) saturate(180%);border-radius:var(--radius-lg);padding:clamp(20px,4vw,36px);box-shadow:var(--shadow);border:1px solid var(--border);margin-bottom:clamp(32px,5vw,48px);position:relative;overflow:hidden;}
+.toc::before{content:"";position:absolute;top:0;right:0;width:220px;height:220px;background:radial-gradient(circle,var(--brand-glow),transparent 70%);opacity:.2;pointer-events:none;}
+.toc h2{font-size:clamp(17px,1.8vw + 8px,22px);font-weight:800;margin-bottom:22px;display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--brand-1),var(--accent-purple));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.toc ol{list-style:none;counter-reset:toc;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px;}
+@media (max-width:640px){.toc ol{grid-template-columns:1fr}}
+.toc li{counter-increment:toc}
+.toc a{display:flex;align-items:center;gap:14px;padding:10px 14px;border-radius:12px;color:var(--text);text-decoration:none;font-weight:600;font-size:14px;transition:.25s var(--ease);position:relative;}
+.toc a::before{content:counter(toc,decimal-leading-zero);font-family:'JetBrains Mono',monospace;font-weight:800;font-size:12px;color:#fff;background:linear-gradient(135deg,var(--brand-1),var(--brand-2));min-width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:10px;flex-shrink:0;transition:.25s var(--ease-spring);box-shadow:0 4px 12px rgba(59,130,246,.25);}
+.toc a:hover{background:var(--surface-hover);transform:translateX(-4px);}
+.toc a:hover::before{transform:rotate(-8deg) scale(1.1);}
+
+/* ───── 12. SECTION TITLE ───── */
+.section-title{position:relative;display:flex;align-items:center;gap:16px;font-size:clamp(18px,2.4vw + 10px,30px);font-weight:900;margin:clamp(48px,8vw,88px) 0 clamp(20px,4vw,36px);padding-bottom:18px;line-height:1.35;letter-spacing:-.3px;}
+.section-title::before{content:"";position:absolute;bottom:0;right:0;left:0;height:3px;background:linear-gradient(90deg,var(--brand-1),var(--brand-2),var(--accent-purple),transparent);border-radius:3px;opacity:.7;}
+.section-title::after{content:"";position:absolute;bottom:-2px;right:0;width:80px;height:7px;background:linear-gradient(90deg,var(--brand-1),var(--brand-2));border-radius:7px;box-shadow:0 0 20px var(--brand-glow);}
+.section-title .num{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:clamp(44px,6vw,60px);height:clamp(44px,6vw,60px);border-radius:18px;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2vw + 8px,24px);font-weight:900;color:#fff;background:linear-gradient(135deg,var(--brand-1),var(--brand-2));box-shadow:0 8px 24px var(--brand-glow), inset 0 -4px 8px rgba(0,0,0,.15), inset 0 4px 8px rgba(255,255,255,.2);transform:rotate(-4deg);transition:.4s var(--ease-spring);}
+.section-title:hover .num{transform:rotate(4deg) scale(1.08);}
+.section-title .txt{background:linear-gradient(135deg,var(--text),var(--text-2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+
+.subsection{display:flex;align-items:center;gap:14px;font-size:clamp(15px,1.6vw + 8px,20px);font-weight:800;color:var(--text);margin:clamp(24px,4vw,40px) 0 16px;padding:12px 18px;border-radius:14px;background:var(--surface);backdrop-filter:blur(10px);border:1px solid var(--border);border-right:4px solid var(--brand-1);box-shadow:var(--shadow-sm);transition:.3s;}
+.subsection:hover{transform:translateX(-4px);box-shadow:var(--shadow);}
+.subsection .ic{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(139,92,246,.15));font-size:18px;flex-shrink:0;}
+
+/* ───── 13. CARDS ───── */
+.card{background:var(--surface);backdrop-filter:blur(var(--blur)) saturate(180%);-webkit-backdrop-filter:blur(var(--blur)) saturate(180%);border:1px solid var(--border);border-radius:var(--radius-lg);padding:clamp(18px,3vw,32px);margin-bottom:clamp(16px,2.5vw,24px);box-shadow:var(--shadow-sm);transition:all .4s var(--ease);position:relative;overflow:hidden;}
+.card::before{content:"";position:absolute;top:0;right:0;width:120px;height:120px;background:radial-gradient(circle,var(--brand-glow),transparent 70%);opacity:0;transition:opacity .4s;pointer-events:none;}
+@media (hover:hover){.card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px);border-color:var(--border-strong);}.card:hover::before{opacity:.3}}
+.card p{margin-bottom:14px;line-height:2;color:var(--text-2);font-size:clamp(13.5px,1.5vw,15px);}
+.card p:last-child{margin-bottom:0}
+.card strong{color:var(--text);font-weight:800}
+.card em{color:var(--brand-2);font-style:normal;font-weight:700;background:linear-gradient(180deg,transparent 60%,rgba(59,130,246,.15) 60%);padding:0 2px;}
+.card ul{padding-right:24px;line-height:2.1;font-size:clamp(13.5px,1.5vw,15px);color:var(--text-2);}
+
+/* ───── 14. SPECIAL BOXES ───── */
+.think-box{position:relative;border-radius:var(--radius-lg);padding:clamp(18px,3vw,32px);margin-bottom:clamp(16px,2.5vw,24px);background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(245,158,11,.05));backdrop-filter:blur(10px);border:1px solid rgba(59,130,246,.2);overflow:hidden;}
+.think-box::before{content:"";position:absolute;top:0;right:0;width:6px;height:100%;background:linear-gradient(180deg,var(--brand-1),var(--brand-3));border-radius:6px;}
+.think-box h4{font-size:clamp(15px,1.5vw + 8px,18px);font-weight:800;color:var(--text);margin-bottom:18px;display:flex;align-items:center;gap:12px;}
+.think-box h4::before{content:"🤔";font-size:26px;animation:wiggle 3s ease-in-out infinite;}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+.think-box ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:10px;}
+.think-box li{position:relative;padding:12px 40px 12px 16px;line-height:1.9;font-size:clamp(13px,1.5vw,14.5px);color:var(--text-2);background:var(--surface);border-radius:12px;border:1px solid var(--border);transition:.3s var(--ease);}
+.think-box li:hover{transform:translateX(-4px);border-color:var(--brand-1);box-shadow:0 8px 24px var(--brand-glow);}
+.think-box li::before{content:"◈";position:absolute;right:14px;top:12px;color:var(--brand-1);font-size:16px;font-weight:900;}
+
+.expect-box{position:relative;border-radius:var(--radius-lg);padding:clamp(18px,3vw,32px);background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(6,182,212,.06));backdrop-filter:blur(10px);border:1px solid rgba(16,185,129,.2);overflow:hidden;}
+.expect-box::before{content:"";position:absolute;top:0;right:0;width:6px;height:100%;background:linear-gradient(180deg,var(--accent-emerald),var(--accent-cyan));border-radius:6px;}
+.expect-box h4{font-size:clamp(15px,1.5vw + 8px,18px);font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.expect-box h4::before{content:"🎯";font-size:26px}
+.expect-box ol{list-style:none;counter-reset:exp;display:flex;flex-direction:column;gap:10px;padding:0;}
+.expect-box ol li{counter-increment:exp;position:relative;padding:14px 50px 14px 16px;background:var(--surface);border-radius:14px;font-size:clamp(13px,1.5vw,14.5px);line-height:1.9;color:var(--text-2);border:1px solid var(--border);transition:.3s var(--ease);}
+.expect-box ol li:hover{transform:translateX(-4px);border-color:var(--accent-emerald);box-shadow:0 8px 24px rgba(16,185,129,.2);}
+.expect-box ol li::before{content:counter(exp);position:absolute;right:14px;top:50%;transform:translateY(-50%);width:28px;height:28px;background:linear-gradient(135deg,var(--accent-emerald),var(--accent-cyan));color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;font-family:'JetBrains Mono',monospace;box-shadow:0 4px 12px rgba(16,185,129,.3);}
+
+.std-box{position:relative;border-radius:var(--radius-lg);padding:clamp(18px,3vw,32px);background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(139,92,246,.06));backdrop-filter:blur(10px);border:1px solid rgba(59,130,246,.2);overflow:hidden;}
+.std-box::before{content:"";position:absolute;top:0;right:0;width:6px;height:100%;background:linear-gradient(180deg,var(--accent-blue),var(--accent-purple));border-radius:6px;}
+.std-box h4{font-size:clamp(15px,1.5vw + 8px,18px);font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.std-box h4::before{content:"📏";font-size:26px}
+.std-box p{font-size:clamp(13px,1.5vw,14.5px);line-height:2;color:var(--text-2);background:var(--surface);padding:16px 20px;border-radius:14px;border:1px solid var(--border);}
+
+.key-takeaway{position:relative;border-radius:var(--radius-lg);padding:clamp(18px,2.5vw,28px) clamp(18px,3vw,32px);margin:22px 0;background:radial-gradient(circle at 100% 0%,rgba(255,215,0,.15) 0%,transparent 40%),linear-gradient(135deg,rgba(59,130,246,.1),rgba(245,158,11,.06));border:1.5px solid rgba(59,130,246,.3);box-shadow:0 8px 32px rgba(59,130,246,.12);overflow:hidden;}
+.key-takeaway::before{content:"";position:absolute;top:-30px;left:-30px;width:120px;height:120px;background:radial-gradient(circle,rgba(255,215,0,.25),transparent 70%);border-radius:50%;pointer-events:none;}
+.key-takeaway h4{display:flex;align-items:center;gap:12px;font-size:clamp(15px,1.5vw + 8px,17px);font-weight:900;color:#1d4ed8;margin-bottom:14px;}
+[data-theme="dark"] .key-takeaway h4{color:#93c5fd}
+.key-takeaway h4::before{content:"🥇";font-size:26px;animation:guideBounce 2s ease-in-out infinite;}
+.key-takeaway ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;}
+.key-takeaway li{position:relative;padding:8px 30px 8px 0;font-size:clamp(13px,1.5vw,14.5px);line-height:1.9;color:var(--text-2);}
+.key-takeaway li::before{content:"✦";position:absolute;right:10px;top:8px;color:var(--brand-1);font-size:14px;font-weight:900;}
+
+.try-box{position:relative;border-radius:var(--radius-lg);padding:16px 20px 16px 50px;margin:20px 0;background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(59,130,246,.06));border:1.5px dashed rgba(139,92,246,.4);font-size:clamp(13px,1.5vw,14.5px);line-height:1.9;color:var(--text-2);position:relative;}
+.try-box::before{content:"🎯";position:absolute;right:16px;top:16px;font-size:24px;}
+.try-box strong{color:var(--accent-purple);font-weight:800}
+
+/* ───── NEW: QUIZ BOX STYLES ───── */
+.quiz-box{position:relative;border-radius:var(--radius-lg);padding:clamp(20px,3vw,28px);margin:26px 0;background:linear-gradient(135deg,rgba(245,158,11,.1),rgba(244,63,94,.05));border:1.5px solid rgba(245,158,11,.3);box-shadow:0 8px 32px rgba(245,158,11,.1);overflow:hidden;}
+.quiz-box::before{content:"🧠";position:absolute;top:-10px;left:-10px;font-size:100px;opacity:0.05;transform:rotate(-15deg);pointer-events:none;}
+.quiz-header{display:flex;align-items:center;gap:10px;font-size:clamp(15px,1.5vw + 8px,18px);font-weight:900;color:#b45309;margin-bottom:16px;}
+[data-theme="dark"] .quiz-header{color:#fcd34d}
+.quiz-header::before{content:"📝";font-size:24px;}
+.quiz-question{font-weight:800;font-size:clamp(14px,1.6vw,16px);color:var(--text);margin-bottom:16px;line-height:1.8;}
+.quiz-options{display:flex;flex-direction:column;gap:10px;}
+.quiz-option{display:flex;align-items:center;gap:10px;padding:14px 18px;border-radius:12px;border:1px solid var(--border);background:var(--surface-solid);cursor:pointer;transition:all .25s var(--ease);font-weight:600;font-size:clamp(13px,1.5vw,14.5px);color:var(--text-2);text-align:right;}
+.quiz-option:hover{background:var(--surface-hover);border-color:var(--brand-1);transform:translateX(-4px);}
+.quiz-option .opt-letter{width:26px;height:26px;border-radius:8px;background:var(--bg-3);color:var(--text-3);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:800;transition:.2s;}
+.quiz-option:hover .opt-letter{background:var(--brand-1);color:#fff;}
+.quiz-option.correct{background:rgba(16,185,129,.15);border-color:#10b981;color:#047857;}
+.quiz-option.correct .opt-letter{background:#10b981;color:#fff;}
+.quiz-option.wrong{background:rgba(244,63,94,.15);border-color:#f43f5e;color:#be123c;}
+.quiz-option.wrong .opt-letter{background:#f43f5e;color:#fff;}
+.quiz-option.disabled{pointer-events:none;opacity:0.8;}
+.quiz-feedback{display:none;margin-top:16px;padding:12px 16px;border-radius:10px;font-weight:700;font-size:14px;line-height:1.8;background:var(--surface);border:1px solid var(--border);}
+.quiz-feedback.show{display:block;animation:slideDown .3s ease;}
+.quiz-feedback.success{background:rgba(16,185,129,.1);border-color:rgba(16,185,129,.3);color:#047857;}
+.quiz-feedback.error{background:rgba(244,63,94,.1);border-color:rgba(244,63,94,.3);color:#be123c;}
+
+.note{position:relative;border-radius:var(--radius-lg);padding:16px 50px 16px 20px;margin:22px 0;font-size:clamp(13px,1.5vw,14.5px);line-height:1.95;backdrop-filter:blur(10px);transition:.3s;overflow:hidden;}
+.note::before{content:attr(data-icon);position:absolute;right:16px;top:16px;font-size:22px;line-height:1;}
+.note .label{display:inline-flex;align-items:center;gap:6px;font-weight:800;padding:4px 14px;border-radius:var(--radius-full);font-size:11px;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px;}
+.note p{color:inherit;margin:0}
+.note.note-warn{background:linear-gradient(135deg,rgba(245,158,11,.1),rgba(245,158,11,.04));border:1px solid rgba(245,158,11,.25);color:#a16207;}
+[data-theme="dark"] .note.note-warn{color:#fcd34d}
+.note.note-warn::before{content:"⚠️"}
+.note.note-warn .label{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;}
+.note.note-info{background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(59,130,246,.04));border:1px solid rgba(59,130,246,.25);color:#1d4ed8;}
+[data-theme="dark"] .note.note-info{color:#93c5fd}
+.note.note-info::before{content:"💡"}
+.note.note-info .label{background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;}
+
+/* ───── 19. CODE BLOCK (Mobile Friendly) ───── */
+.code-block{position:relative;background:var(--code-bg);border-radius:var(--radius-lg);overflow:hidden;margin:22px 0;direction:ltr;text-align:left;border:1px solid var(--code-border);box-shadow:0 20px 60px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.05);transition:.3s;width:100%;max-width:100%;}
+.code-block:hover{box-shadow:0 24px 80px rgba(0,0,0,.35),0 0 40px var(--brand-glow),inset 0 1px 0 rgba(255,255,255,.05);}
+.code-block.running{box-shadow:0 24px 80px rgba(0,0,0,.35),0 0 60px rgba(16,185,129,.4),inset 0 1px 0 rgba(255,255,255,.05);}
+.code-header{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--code-bg-2);border-bottom:1px solid var(--code-border);position:relative;flex-wrap:wrap;}
+.code-header::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--brand-1),transparent);opacity:.4;}
+.code-header .dots{display:flex;gap:6px;flex-shrink:0}
+.code-header .dot{width:11px;height:11px;border-radius:50%;flex-shrink:0;}
+.dot.red{background:#ff5f56;box-shadow:0 0 8px rgba(255,95,86,.5)}
+.dot.yellow{background:#ffbd2e;box-shadow:0 0 8px rgba(255,189,46,.5)}
+.dot.green{background:#27c93f;box-shadow:0 0 8px rgba(39,201,63,.5)}
+.code-header .filename{font-family:'JetBrains Mono',monospace;font-size:12px;color:#8a95a5;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;}
+.code-header .lang-badge{display:none;padding:2px 10px;border-radius:var(--radius-full);font-size:10px;font-weight:700;font-family:'JetBrains Mono',monospace;background:rgba(110,193,255,.15);color:#6ec1ff;border:1px solid rgba(110,193,255,.3);flex-shrink:0;}
+@media (min-width:640px){.code-header .lang-badge{display:inline-block}}
+.code-actions{display:flex;gap:6px;flex-shrink:0;}
+.code-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#cbd5e1;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;transition:.25s;font-family:'Vazirmatn',sans-serif;white-space:nowrap;}
+.code-btn:hover{transform:translateY(-1px)}
+.code-btn .btn-icon{font-size:12px;line-height:1}
+.run-btn{background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(6,182,212,.1));border-color:rgba(16,185,129,.4);color:#4ade80;}
+.run-btn:hover{background:linear-gradient(135deg,rgba(16,185,129,.3),rgba(6,182,212,.2));border-color:#10b981;color:#6ee7b7;box-shadow:0 4px 16px rgba(16,185,129,.3);}
+.run-btn.running{background:linear-gradient(135deg,rgba(244,63,94,.25),rgba(244,63,94,.12));border-color:#f43f5e;color:#fda4af;}
+.copy-btn:hover{background:rgba(59,130,246,.15);border-color:var(--brand-1);color:var(--brand-1);}
+.copy-btn.copied{background:rgba(16,185,129,.15);border-color:#10b981;color:#10b981;}
+.code-body{display:flex;position:relative;overflow-x:auto;max-width:100%;}
+.line-gutter{flex-shrink:0;padding:18px 8px 18px 12px;background:var(--code-gutter);border-right:1px solid var(--code-border);font-family:'JetBrains Mono',monospace;font-size:12px;color:#4a5568;line-height:1.9;text-align:right;user-select:none;display:flex;flex-direction:column;}
+.line-gutter span{display:block;transition:.2s}
+.line-gutter span:hover{color:var(--brand-1);background:rgba(59,130,246,.08);}
+.code-block pre{flex:1;padding:18px 20px;font-family:'JetBrains Mono',monospace;font-size:clamp(11px,1.3vw + 8px,13.5px);line-height:1.9;color:var(--code-text);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:#4a5568 transparent;margin:0;min-width:100%;}
+.code-block pre::-webkit-scrollbar{height:8px}
+.code-block pre::-webkit-scrollbar-track{background:transparent}
+.code-block pre::-webkit-scrollbar-thumb{background:linear-gradient(90deg,var(--brand-1),var(--brand-2));border-radius:8px;}
+
+.kw{color:#ff8a65;font-weight:700}
+.str{color:#a5e07c}
+.fn{color:#6ec1ff}
+.cm{color:#5c6b7a;font-style:italic}
+.num{color:#f7c86f}
+
+/* ───── 20. TERMINAL (Mobile Friendly) ───── */
+.code-terminal{background:#0a0912;border-top:1px solid var(--code-border);animation:slideDown .35s var(--ease);overflow:hidden;}
+@keyframes slideDown{from{max-height:0;opacity:0}to{max-height:800px;opacity:1}}
+.terminal-header{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;background:#050409;border-bottom:1px solid var(--code-border);}
+.terminal-title{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#8a95a5;text-transform:uppercase;letter-spacing:.5px;}
+.terminal-icon{color:#4ade80;font-size:10px;animation:termBlink 1.5s ease infinite;}
+@keyframes termBlink{0%,100%{opacity:1}50%{opacity:.4}}
+.terminal-close{width:24px;height:24px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8a95a5;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;transition:.2s;}
+.terminal-close:hover{background:rgba(244,63,94,.15);border-color:#f43f5e;color:#f43f5e;}
+.terminal-body{padding:14px 16px;font-family:'JetBrains Mono',monospace;font-size:clamp(11.5px,1.3vw + 8px,13.5px);line-height:1.9;color:#e8edf4;min-height:60px;max-height:400px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#4a5568 transparent;}
+.terminal-line{animation:typeIn .3s var(--ease) both;white-space:pre-wrap;word-break:break-word;}
+@keyframes typeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.terminal-line.prompt-line{color:#6ec1ff}
+.terminal-line.error{color:#f87171;font-weight:600}
+.terminal-line.success{color:#a5e07c}
+.terminal-line .prompt-sym{color:#4ade80;font-weight:800;margin-right:8px;}
+.terminal-line .cmd{color:#f7c86f;font-weight:700;}
+.terminal-cursor{display:inline-block;width:8px;height:15px;background:#4ade80;margin-right:4px;vertical-align:middle;animation:termBlink 1.05s step-end infinite;}
+.terminal-loading{display:flex;align-items:center;gap:10px;color:#8a95a5;font-size:12px;}
+.loading-dots{display:flex;gap:4px}
+.loading-dots span{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:loadingBounce 1.4s ease-in-out infinite;}
+.loading-dots span:nth-child(2){animation-delay:.15s}
+.loading-dots span:nth-child(3){animation-delay:.3s}
+@keyframes loadingBounce{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-6px);opacity:1}}
+.terminal-line:empty::before{content:"\200b"}
+.terminal-line .t-stdout{color:#a5e07c}
+.terminal-line .t-stderr{color:#f87171;font-weight:600}
+.terminal-line .t-stdin{color:#f7c86f;font-weight:700}
+.terminal-line.t-restart{color:#6ec1ff}
+.terminal-line.t-info{color:#8a95a5;font-family:'Vazirmatn',sans-serif;font-size:.9em;}
+.terminal-input{font:inherit;font-weight:700;color:#f7c86f;background:rgba(247,200,111,.08);border:none;border-bottom:1px dashed rgba(247,200,111,.6);border-radius:4px 4px 0 0;padding:0 6px;margin:0;min-width:14ch;max-width:100%;field-sizing:content;outline:none;caret-color:#f7c86f;font-size:16px;}
+
+/* ───── 21. INLINE CODE ───── */
+code.inline{background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(139,92,246,.08));color:var(--brand-2);padding:3px 8px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:.88em;font-weight:700;direction:ltr;display:inline-block;border:1px solid rgba(59,130,246,.2);transition:.2s;unicode-bidi:isolate;word-break:break-all;}
+[data-theme="dark"] code.inline{color:#93c5fd}
+
+/* ───── 22. TABLES (Responsive Magic) ───── */
+.table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:20px 0;border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);border:1px solid var(--border);background:var(--surface);backdrop-filter:blur(10px);}
+.table-wrap table{width:100%;min-width:520px;border-collapse:separate;border-spacing:0;font-size:13.5px;}
+thead{background:linear-gradient(135deg,var(--brand-1),var(--brand-2));color:#fff}
+th,td{padding:12px 16px;text-align:right;line-height:1.7}
+th{font-weight:800;font-size:13.5px;white-space:nowrap}
+tbody tr{background:var(--surface-solid);transition:.2s}
+tbody tr:nth-child(even){background:var(--bg-2)}
+tbody tr:hover{background:rgba(59,130,246,.06)}
+td{border-top:1px solid var(--border);color:var(--text-2)}
+@media (max-width:640px){
+  .table-wrap{border-radius:14px;overflow:visible;box-shadow:none;background:transparent;border:none;}
+  .table-wrap table{min-width:0;display:block}
+  .table-wrap thead{display:none}
+  .table-wrap tbody{display:block}
+  .table-wrap tbody tr{display:block;background:var(--surface);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:14px;margin-bottom:12px;padding:14px 16px;box-shadow:var(--shadow-sm);}
+  .table-wrap td{display:block;border:none;padding:4px 0;text-align:right;}
+  .table-wrap td::before{content:attr(data-label);display:block;font-weight:800;color:var(--brand-1);font-size:11px;margin-bottom:2px;}
+}
+
+
+
+
+/* ═══════════════ CHEAT SHEET STYLES ═══════════════ */
+.cheat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin: 24px 0 40px;
+}
+
+.cheat-card {
+  background: var(--surface);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+
+.cheat-card::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0;
+  width: 100%; height: 4px;
+  background: linear-gradient(90deg, var(--brand-1), var(--brand-2));
+  opacity: 0.8;
+}
+
+.cheat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--brand-1);
+}
+
+.cheat-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.cheat-title .ic {
+  font-size: 22px;
+}
+
+.cheat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.cheat-item:last-child {
+  margin-bottom: 0;
+}
+
+.cheat-item:hover {
+  background: var(--bg-2);
+}
+
+.cheat-item code.inline {
+  align-self: flex-start;
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--brand-2);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  padding: 4px 8px;
+  font-size: 12.5px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.cheat-item span {
+  font-size: 12px;
+  color: var(--text-3);
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+
+
+
+
+
+/* ───── 28. FINAL CLOSING & FOOTER ───── */
+.final-closing{margin-top:clamp(40px,7vw,60px);padding:clamp(24px,5vw,48px) clamp(20px,4vw,40px);border-radius:var(--radius-xl);background:radial-gradient(circle at 20% 30%,rgba(255,255,255,.15) 0%,transparent 40%),radial-gradient(circle at 80% 70%,rgba(139,92,246,.3) 0%,transparent 50%),linear-gradient(135deg,#3b82f6 0%,#8b5cf6 50%,#06b6d4 100%);color:#fff;text-align:center;box-shadow:0 30px 80px rgba(59,130,246,.2);position:relative;overflow:hidden;}
+.final-closing::before{content:"";position:absolute;top:-50px;left:-50px;width:220px;height:220px;border:2px dashed rgba(255,255,255,.25);border-radius:50%;animation:spin 45s linear infinite;}
+.final-closing .big-icon{font-size:50px;margin-bottom:16px;display:block;animation:bounce 3s ease-in-out infinite;}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.final-closing h2{font-size:clamp(20px,3vw + 10px,34px);font-weight:900;margin-bottom:12px;text-shadow:0 4px 24px rgba(0,0,0,.2);}
+.final-closing p{font-size:clamp(13px,1.5vw + 8px,17px);line-height:2;opacity:.95;max-width:620px;margin:0 auto 24px;}
+.final-closing .emoji-row{font-size:30px;letter-spacing:10px;margin-top:16px;}
+
+.footer{margin-top:80px;text-align:center;padding:40px 20px 20px;color:var(--text-3);font-size:13px;border-top:1px solid var(--border);position:relative;}
+.footer::before{content:"";position:absolute;top:-1px;left:50%;transform:translateX(-50%);width:120px;height:3px;background:linear-gradient(90deg,transparent,var(--brand-1),var(--brand-2),transparent);border-radius:3px;box-shadow:0 0 20px var(--brand-glow);}
+.footer .teacher{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(139,92,246,.08));border:1px solid rgba(59,130,246,.2);color:var(--text);padding:10px 24px;border-radius:var(--radius-full);font-weight:800;margin-bottom:14px;font-size:14px;}
+.footer p{line-height:1.9}
+
+/* ───── 30. REVEAL ANIMATION ───── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* ───── 31. RESPONSIVE FIXES ───── */
+@media (max-width:900px){
+  body::before,body::after{animation:none !important;filter:blur(60px) !important;opacity:.25 !important;}
+  [data-theme="dark"] body::before,[data-theme="dark"] body::after{opacity:.12 !important;}
+  .top-bar,.card,.toc,.think-box,.expect-box,.std-box,.guide-bubble,.cover-meta div,.cover-badge{backdrop-filter:blur(8px) !important;-webkit-backdrop-filter:blur(8px) !important;}
+  .cover,.final-closing,.logo .icon,.guide-avatar,.cover::before,.final-closing::before{animation:none !important;}
+}
+@supports (-webkit-touch-callout: none){
+  body{min-height:-webkit-fill-available;}
+  .top-bar{background:var(--surface-solid) !important;}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important;}
+  .reveal{opacity:1;transform:none}
+  .terminal-line{animation:none}
+}
+@media (max-width:768px){
+  .reveal{opacity:1 !important;transform:none !important;transition:none !important;}
+}
+@media (max-width:400px){
+  .code-btn .btn-text{display:none;}
+  .code-btn{padding:8px; border-radius:50%;}
+  .cover-guide{flex-direction:column; text-align:center;}
+  .cover-guide-avatar{margin-bottom:10px;}
+}
+
+
+
+
+.figure-card{background:var(--surface);backdrop-filter:blur(var(--blur)) saturate(180%);-webkit-backdrop-filter:blur(var(--blur)) saturate(180%);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin:clamp(18px,2.5vw,26px) 0;box-shadow:var(--shadow-sm);transition:.4s var(--ease);}
+.fig-head{display:flex;align-items:center;gap:12px;padding:14px clamp(16px,3vw,22px);background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(139,92,246,.08));border-bottom:1px solid var(--border);}
+.fig-num{flex-shrink:0;width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:800;font-size:13px;color:#fff;background:linear-gradient(135deg,var(--brand-1),var(--brand-2));box-shadow:0 4px 12px var(--brand-glow);}
+.fig-title{font-weight:800;font-size:14.5px;color:var(--text);line-height:1.6;}
+.fig-body{padding:clamp(14px,2.5vw,22px);background:var(--surface-solid);}
+.fig-body svg{display:block;width:100%;height:auto;border-radius:12px;}
+.fig-caption{padding:14px clamp(16px,3vw,22px) 18px;font-size:13.5px;line-height:2;color:var(--text-2);border-top:1px dashed var(--border);}
+.fig-caption strong{color:var(--text)}
+
+
+
+</style>
+</head>
+
+<body>
+
+<!-- ═══════════════ TOP BAR ═══════════════ -->
+<header class="top-bar">
+  <div class="logo">
+    <span class="icon">📦</span>
+    <span class="text">
+      <span class="line-1">پایتون ۳.۱۴</span>
+      <span class="line-2">پودمان اول</span>
+    </span>
+  </div>
+
+  <nav class="topnav" id="topnav">
+    <a href="#think" data-section="think"><span class="nav-ic">💭</span>آغاز</a>
+    <a href="#expect" data-section="expect"><span class="nav-ic">🎯</span>اهداف</a>
+    <a href="#sets" data-section="sets"><span class="nav-ic">🎒</span>مجموعه‌ها</a>
+    <a href="#dict" data-section="dict"><span class="nav-ic">📖</span>دیکشنری</a>
+    <a href="#args-kwargs" data-section="args-kwargs"><span class="nav-ic">🌟</span>آرگومان‌ها</a>
+    <a href="#debug-challenge" data-section="debug-challenge"><span class="nav-ic">🐞</span>دیباگ</a>
+    <a href="#quiz" data-section="quiz"><span class="nav-ic">🎮</span>پروژه</a>
+    <a href="#tuples" data-section="tuples"><span class="nav-ic">📦</span>تاپل</a>
+    <a href="#functions" data-section="functions"><span class="nav-ic">⚙️</span>توابع</a>
+    <a href="#modules" data-section="modules"><span class="nav-ic">📁</span>ماژول‌ها</a>
+        <a href="#cheat-sheet" data-section="cheat-sheet"><span class="nav-ic">📋</span>تقلب‌نامه</a>
+
+  </nav>
+
+  <button class="theme-toggle" id="themeToggle" aria-label="تغییر تم" title="تغییر تم (کلید T)">
+    <span class="toggle-icon" id="toggleIcon">🌙</span>
+  </button>
+</header>
+
+<div class="progress-bar"><div class="fill" id="progressFill"></div></div>
+
+<main class="booklet">
+
+  <!-- ═══════════════ COVER ═══════════════ -->
+  <header class="cover reveal">
+    <span class="cover-badge">جزوه آموزشی هنرستان | نسخه پایتون ۳.۱۴</span>
+    <h1>پودمان اول: برنامه نویسی پایتون </h1>
+    <p class="subtitle">واحد یادگیری ۲ — کار با توابع و ماژول‌ها</p>
+    <div class="cover-meta">
+      <div style="flex-direction:column;align-items:flex-start;gap:4px">
+        <span style="display:flex;align-items:center;gap:10px"><span class="ic">👨‍🏫</span> مدرس: پوریا جان‌پرور</span>
+      </div>
+      <div><span class="ic">🏫</span> استعدادهای درخشان و نمونه امام خمینی</div>
+      <div><span class="ic">🐍</span> پایتون ۳.۱۴</div>
+    </div>
+    <div class="cover-guide">
+      <div class="cover-guide-avatar">
+        <span class="avatar-emoji">🤖</span>
+        <span class="avatar-name">پای‌بات</span>
+      </div>
+      <div class="cover-guide-bubble">
+        سلام! دوباره منو می‌بینی! 😎 توی این پودمان قراره با هم <strong>مجموعه‌ها</strong>، <strong>دیکشنری‌ها</strong>، <strong>تاپل‌ها</strong>، <strong>توابع</strong> و <strong>ماژول‌ها</strong> رو یاد بگیریم. 
+        آماده‌ای که داده‌ها رو حرفه‌ای‌تر مدیریت کنی؟
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════ TOC ═══════════════ -->
+  <nav class="toc reveal">
+    <h2>📑 فهرست مطالب</h2>
+    <ol>
+      <li><a href="#think">آیا تا حالا اندیشیده‌اید؟</a></li>
+      <li><a href="#expect">اهداف یادگیری پودمان</a></li>
+      <li><a href="#standard">استاندارد عملکرد</a></li>
+      <li><a href="#sets">آشنایی با مجموعه‌ها (Set)</a></li>
+      <li><a href="#sets-add">اضافه کردن به مجموعه</a></li>
+      <li><a href="#sets-remove">حذف از مجموعه</a></li>
+      <li><a href="#sets-in">بررسی وجود در مجموعه</a></li>
+      <li><a href="#dict">آشنایی با دیکشنری (Dictionary)</a></li>
+      <li><a href="#dict-notes">نکات مهم دیکشنری</a></li>
+      <li><a href="#dict-add">اضافه کردن به دیکشنری</a></li>
+      <li><a href="#dict-del">حذف از دیکشنری (del)</a></li>
+      <li><a href="#dict-pop">حذف از دیکشنری (pop)</a></li>
+      <li><a href="#quiz">پروژه بازی Quiz</a></li>
+      <li><a href="#tuples">آشنایی با تاپل (Tuple)</a></li>
+      <li><a href="#tuples-access">دسترسی به عناصر تاپل</a></li>
+      <li><a href="#tuples-del">حذف تاپل</a></li>
+      <li><a href="#functions">آشنایی با توابع (Function)</a></li>
+      <li><a href="#functions-define">تعریف و فراخوانی تابع</a></li>
+      <li><a href="#functions-params">پارامتر و آرگومان</a></li>
+      <li><a href="#functions-args-type">آرگومان‌های ترتیبی و کلیدی</a></li>
+      <li><a href="#functions-default">مقادیر پیش‌فرض پارامتر</a></li>
+      <li><a href="#functions-return">مقدار بازگشتی تابع (return)</a></li>
+      <li><a href="#functions-loops">استفاده از حلقه در تابع</a></li>
+      <li><a href="#built-in-functions">انواع توابع در پایتون</a></li>
+      <li><a href="#calculator-project">پروژه ماشین‌حساب</a></li>
+      <li><a href="#sorted-function">تابع مرتب‌سازی (sorted)</a></li>
+      <li><a href="#modules">ماژول‌ها (Module)</a></li>
+      <li><a href="#import-methods">روش‌های وارد کردن ماژول</a></li>
+      <li><a href="#common-modules">ماژول‌های پرکاربرد</a></li>
+      <li><a href="#local-modules">ماژول محلی (Local)</a></li>
+      <li><a href="#third-party-modules">ماژول‌های شخص ثالث</a></li>
+      <li><a href="#function-vs-method">تفاوت تابع و متد</a></li>
+            <li><a href="#dict-methods">متدهای پیشرفته دیکشنری</a></li>
+      <!-- ... بخش‌های دیگه ... -->
+      <li><a href="#args-kwargs">آرگومان‌های نامحدود (*args)</a></li>
+            <li><a href="#cheat-sheet">تقلب‌نامه مرور سریع</a></li>
+      <!-- ... بخش‌های دیگه ... -->
+      <li><a href="#debug-challenge">چالش پیدا کردن باگ</a></li>
+    </ol>
+  </nav>
+
+  <!-- ═══════════════ SECTION 01 — THINK ═══════════════ -->
+  <h2 class="section-title reveal" id="think">
+    <span class="num">01</span>
+    <span class="txt">آیا تا حالا اندیشیده‌اید؟</span>
+  </h2>
+
+  <div class="guide reveal" data-mood="think">
+    <div class="guide-avatar">🤖</div>
+    <div class="guide-bubble">
+      تا حالا به این فکر کردی که چطور میشه یه لیست از اعداد رو بدون تکرار ذخیره کرد؟ 
+      یا چطور میشه اطلاعات یه دانش‌آموز (نام، سن، نمره) رو طوری ذخیره کرد که سریع بهشون دسترسی داشته باشیم؟
+    </div>
+  </div>
+
+  <div class="think-box reveal">
+    <h4>پرسش‌های آغازین</h4>
+    <ul>
+      <li>اگر بخواهیم از مجموعه اعداد بدون تکرار استفاده کنیم، از ترتیب داده‌ها با حفظ کنیم و تغییر نپذیرد، از چه داده‌ای استفاده می‌کنید؟</li>
+      <li>فرض کنید می‌خواهید اطلاعات یک دانش‌آموز مثل نام، سن و نمرات او را ذخیره کنید و سریع به هر مورد دسترسی داشته باشید، چه ساختار داده‌ای مناسب است؟</li>
+      <li>اگر بخواهید یک عمل خاص را چند بار در برنامه استفاده کنید، بدون اینکه کد را تکرار کنید، چه راهی وجود دارد؟</li>
+      <li>چگونه می‌توانید در یک تابع تعدادی زیادی داده را پردازش کنید و عملیات تکراری را انجام دهید، بدون کد طولانی نوشتن؟</li>
+      <li>چگونه می‌توانید از کدهای آماده دیگران استفاده کنید؟ چه تفاوتی بین تابع و تابع دیگر وجود دارد؟</li>
+    </ul>
+  </div>
+
+  <!-- ═══════════════ SECTION 02 — EXPECT ═══════════════ -->
+  <h2 class="section-title reveal" id="expect">
+    <span class="num">02</span>
+    <span class="txt">اهداف یادگیری پودمان</span>
+  </h2>
+
+  <div class="expect-box reveal">
+    <h4>در پایان از هنرجو انتظار می‌رود:</h4>
+    <ol>
+      <li>مجموعه‌ها و تاپل‌ها را تعریف کند، عناصر مجموعه‌ها را حذف یا اضافه کند و کاربرد هر یک را بداند.</li>
+      <li>دیکشنری بسازد، کلید و مقدار اضافه کند، داده‌ها را با کلیدها بازیابی کند و کاربرد دیکشنری را در ذخیره‌سازی اطلاعات بداند.</li>
+      <li>هنرجو قادر باشد توابع ساده بنویسد، پارامترها و آرگومان‌ها را استفاده کند و مقدار بازگشتی تابع را دریافت و به کار ببرد.</li>
+      <li>هنرجو بتواند توابع پیچیده‌تری بنویسد، از حلقه‌ها در توابع استفاده کند و عملیات تکراری را در توابع مدیریت کند.</li>
+      <li>ماژول‌ها را وارد کند، توابع و کلاس‌های آماده را در برنامه خود استفاده کند و ماژول‌های استاندارد پایتون را بشناسد.</li>
+      <li>ماژول‌های محلی را ایجاد و استفاده کند.</li>
+    </ol>
+  </div>
+
+  <!-- ═══════════════ SECTION 03 — STANDARD ═══════════════ -->
+  <h2 class="section-title reveal" id="standard">
+    <span class="num">03</span>
+    <span class="txt">استاندارد عملکرد</span>
+  </h2>
+
+  <div class="std-box reveal">
+    <h4>شرح استاندارد</h4>
+    <p>هنرجو بتواند توابع و ماژول‌ها را ایجاد و استفاده کند، داده‌ها و عملیات تکراری را با توابع مدیریت کند، از ماژول‌های محلی بهره ببرد و تفاوت بین تابع و متد را تشخیص دهد.</p>
+  </div>
+
+  <!-- ═══════════════ SECTION 04 — SETS ═══════════════ -->
+  <h2 class="section-title reveal" id="sets">
+    <span class="num">04</span>
+    <span class="txt">مجموعه‌ها در پایتون (Sets)</span>
+  </h2>
+
+  <div class="guide reveal">
+    <div class="guide-avatar">🤖</div>
+    <div class="guide-bubble">
+      اولین ساختار داده‌ی جدید، <strong>مجموعه (Set)</strong> هستش. 
+      تصور کن یه کیف داری که توش فقط وسایل <em>متفاوت</em> می‌ذاری و اصلاً ترتیب برات مهم نیست. این دقیقاً همون تعریف Set توی پایتونه!
+    </div>
+  </div>
+
+  <div class="card reveal">
+    <p>مجموعه‌ها برای ذخیره چند مقدار در یک متغیر استفاده می‌شوند. مجموعه یکی از انواع داده پایتون است که برای ذخیره‌سازی انواع داده‌ها مثل اعداد صحیح، اعداد اعشاری، رشته‌ها، بولین‌ها و تاپل‌ها (tuple) به‌صورت مجموعه‌ای به کار می‌رود.</p>
+    <p>در پایتون، برای تعریف یک مجموعه از آکولاد <code class="inline">{}</code> استفاده می‌شود. مجموعه‌ها ترتیب ندارند و عناصر تکراری را حذف می‌کنند.</p>
+  </div>
+
+    <!-- IMAGE: SETS -->
+  <div class="figure-card reveal">
+    <div class="fig-head">
+      <span class="fig-num">۰۱</span>
+      <span class="fig-title">مفهوم مجموعه و اشتراک (Set)</span>
+    </div>
+    <div class="fig-body">
+      <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="نمودار وِن مجموعه‌ها">
+        <rect width="600" height="300" fill="var(--bg-2)" rx="10"/>
+        <!-- Circle A -->
+        <circle cx="220" cy="150" r="100" fill="rgba(59,130,246,0.3)" stroke="#3b82f6" stroke-width="3"/>
+        <text x="150" y="150" font-family="Vazirmatn, sans-serif" font-weight="800" font-size="20" fill="#3b82f6" text-anchor="middle">A</text>
+        
+        <!-- Circle B -->
+        <circle cx="380" cy="150" r="100" fill="rgba(139,92,246,0.3)" stroke="#8b5cf6" stroke-width="3"/>
+        <text x="450" y="150" font-family="Vazirmatn, sans-serif" font-weight="800" font-size="20" fill="#8b5cf6" text-anchor="middle">B</text>
+
+        <!-- Intersection Text -->
+        <text x="300" y="155" font-family="Vazirmatn, sans-serif" font-weight="900" font-size="16" fill="var(--text)" text-anchor="middle">A ∩ B</text>
+        
+        <!-- Labels -->
+        <text x="300" y="270" font-family="Vazirmatn, sans-serif" font-weight="700" font-size="14" fill="var(--text-2)" text-anchor="middle">مجموعه‌ها اعضای تکراری را حذف می‌کنند و ترتیب ندارند</text>
+        
+        <style>
+          .figure-card svg circle { transition: all 0.5s ease; }
+          .figure-card:hover svg circle:nth-child(2) { transform: translateX(-10px); }
+          .figure-card:hover svg circle:nth-child(4) { transform: translateX(10px); }
+        </style>
+      </svg>
+    </div>
+    <div class="fig-caption">
+      <strong>شکل ۱:</strong> اشتراک دو مجموعه (A ∩ B) شامل عناصری است که در هر دو مجموعه وجود دارند.
+    </div>
+  </div>
+
+  <div class="subsection reveal"><span class="ic">🛠️</span> ساخت set</div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">create_set.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="fn">fruitset</span> = {<span class="str">"apple"</span>, <span class="str">"banana"</span>, <span class="str">"cherry"</span>}
+<span class="fn">print</span>(fruitset)</pre>
+    </div>
+    <div class="code-output-data" hidden>{'banana', 'apple', 'cherry'}</div>
+  </div>
+
+  <div class="note note-info reveal">
+    <span class="label">نکته مهم</span>
+    <p>اگر برنامه‌ی بالا را چند بار اجرا کنید، متوجه می‌شوید که ترتیب نمایش عناصر تغییر می‌کند! این نشان می‌دهد Set ترتیب ندارد.</p>
+  </div>
+
+  <!-- ═══════════════ SECTION 05 — SETS ADD ═══════════════ -->
+  <h2 class="section-title reveal" id="sets-add">
+    <span class="num">05</span>
+    <span class="txt">اضافه کردن به مجموعه (add)</span>
+  </h2>
+
+  <div class="card reveal">
+    <p>برای اضافه کردن عنصر جدید به مجموعه، از متد <code class="inline">add()</code> استفاده می‌شود. برنامه را اجرا کنید، مشاهده خواهید کرد که عناصر تکراری به مجموعه اضافه نمی‌شوند.</p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">add_to_set.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="fn">fruits</span> = {<span class="str">"apple"</span>, <span class="str">"banana"</span>, <span class="str">"orange"</span>}
+fruits.<span class="fn">add</span>(<span class="str">"grape"</span>)
+fruits.<span class="fn">add</span>(<span class="str">"grape"</span>)
+<span class="fn">print</span>(fruits)</pre>
+    </div>
+    <div class="code-output-data" hidden>{'orange', 'grape', 'apple', 'banana'}</div>
+  </div>
+
+  <!-- ═══════════════ SECTION 06 — SETS REMOVE ═══════════════ -->
+  <h2 class="section-title reveal" id="sets-remove">
+    <span class="num">06</span>
+    <span class="txt">حذف از مجموعه (remove)</span>
+  </h2>
+
+  <div class="card reveal">
+    <p>با استفاده از متد <code class="inline">remove</code> می‌توانید عنصر یک set را حذف کنید. اگر عنصری که می‌خواهید حذف کنید وجود نداشته باشد، برنامه خطا می‌دهد!</p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">remove_from_set.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="fn">fruits</span> = {<span class="str">"apple"</span>, <span class="str">"banana"</span>, <span class="str">"orange"</span>}
+fruits.<span class="fn">remove</span>(<span class="str">"banana"</span>)
+<span class="fn">print</span>(fruits)
+
+<span class="cm"># خطای زیر را اجرا کنید تا ببینید چه اتفاقی می‌افتد</span>
+fruits.<span class="fn">remove</span>(<span class="str">"grape"</span>)</pre>
+    </div>
+    <div class="code-output-data" hidden>Traceback (most recent call last):
+  File "remove_from_set.py", line 5, in &lt;module&gt;
+    fruits.remove("grape")
+KeyError: 'grape'</div>
+  </div>
+
+  <!-- ═══════════════ SECTION 07 — SETS IN ═══════════════ -->
+  <h2 class="section-title reveal" id="sets-in">
+    <span class="num">07</span>
+    <span class="txt">بررسی وجود عنصر در set (in)</span>
+  </h2>
+
+  <div class="card reveal">
+    <p>از عملگر <code class="inline">in</code> برای بررسی وجود یک عنصر در مجموعه استفاده می‌شود. اگر عنصر در مجموعه باشد <code class="inline">True</code> و در غیر این صورت <code class="inline">False</code> برمی‌گرداند.</p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">check_set.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="fn">fruits</span> = {<span class="str">"apple"</span>, <span class="str">"banana"</span>, <span class="str">"orange"</span>}
+<span class="kw">if</span> <span class="str">"grape"</span> <span class="kw">in</span> fruits:
+    <span class="fn">print</span>(<span class="str">"grape is available"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"grape is not available"</span>)</pre>
+    </div>
+    <div class="code-output-data" hidden>grape is not available</div>
+  </div>
+
+  <div class="try-box reveal">
+    <strong>فعالیت:</strong> برنامه‌ای بنویسید که یک set از اعداد داشته باشد و بررسی کند عدد ۱۰ در set وجود دارد یا خیر.
+  </div>
+
+  <!-- ═══════════════ SECTION 08 — DICTIONARY ═══════════════ -->
+  <h2 class="section-title reveal" id="dict">
+    <span class="num">08</span>
+    <span class="txt">دیکشنری (Dictionary)</span>
+  </h2>
+
+  <div class="guide reveal">
+    <div class="guide-avatar">🤖</div>
+    <div class="guide-bubble">
+      حالا بریم سراغ <strong>دیکشنری</strong>! این ساختار داده خیلی شبیه دیکشنری واقعیه. 
+      یه کلمه (کلید) داری و معنی‌ش (مقدار) رو پیدا می‌کنی. توی پایتون هم به جای کلمه، یه «کلید» داریم و به جای معنی، یه «مقدار».
+    </div>
+  </div>
+
+  <div class="card reveal">
+    <p>نوع داده <span class="hl">dictionary</span> شبیه دیکشنری لغات است که هر نام با یک شماره/لغت مرتبط است.</p>
+    <p>دیکشنری‌ها از تعدادی جفت <em>کلید: مقدار (key:value)</em> تشکیل شده‌اند که هر کلید به یک مقدار اشاره دارد. برای ایجاد dictionary آپشن‌ها درون آکولاد <code class="inline">{}</code> و با کاما از یکدیگر جدا می‌شوند.</p>
+  </div>
+
+
+    <!-- IMAGE: DICTIONARY -->
+  <div class="figure-card reveal">
+    <div class="fig-head">
+      <span class="fig-num">۰۲</span>
+      <span class="fig-title">ساختار کلید-مقدار در دیکشنری</span>
+    </div>
+    <div class="fig-body">
+      <svg viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="نمودار دیکشنری">
+        <rect width="600" height="260" fill="var(--bg-2)" rx="10"/>
+        
+        <!-- Key Box -->
+        <rect x="80" y="60" width="160" height="50" rx="10" fill="#3b82f6" opacity="0.9"/>
+        <text x="160" y="92" font-family="JetBrains Mono, monospace" font-weight="800" font-size="18" fill="#fff" text-anchor="middle">"name"</text>
+        <text x="160" y="40" font-family="Vazirmatn, sans-serif" font-weight="700" font-size="14" fill="#3b82f6" text-anchor="middle">Key (کلید)</text>
+
+        <!-- Arrow -->
+        <path d="M 250 85 L 350 85" stroke="var(--text-3)" stroke-width="3" stroke-dasharray="8 4" marker-end="url(#arrowhead)"/>
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="var(--text-3)" />
+          </marker>
+        </defs>
+
+        <!-- Value Box -->
+        <rect x="360" y="60" width="160" height="50" rx="10" fill="#10b981" opacity="0.9"/>
+        <text x="440" y="92" font-family="JetBrains Mono, monospace" font-weight="800" font-size="18" fill="#fff" text-anchor="middle">"Ali"</text>
+        <text x="440" y="40" font-family="Vazirmatn, sans-serif" font-weight="700" font-size="14" fill="#10b981" text-anchor="middle">Value (مقدار)</text>
+
+        <!-- Bottom Text -->
+        <text x="300" y="180" font-family="JetBrains Mono, monospace" font-weight="700" font-size="16" fill="var(--text)" text-anchor="middle">{ "name" : "Ali", "age" : 20 }</text>
+        <text x="300" y="220" font-family="Vazirmatn, sans-serif" font-weight="700" font-size="14" fill="var(--text-2)" text-anchor="middle">دسترسی سریع به مقادیر با استفاده از کلیدها</text>
+      </svg>
+    </div>
+    <div class="fig-caption">
+      <strong>شکل ۲:</strong> در دیکشنری، هر کلید (Key) مانند یک برچسب عمل می‌کند و به یک مقدار (Value) متصل است.
+    </div>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">create_dict.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="fn">person</span> = {
+    <span class="str">"name"</span>: <span class="str">"Arash"</span>,
+    <span class="str">"age"</span>: <span class="num">20</span>,
+    <span class="str">"city"</span>: <span class="str">"Tehran"</span>
+}
+
+<span class="fn">print</span>(person[<span class="str">"name"</span>])
+<span class="fn">print</span>(person[<span class="str">"age"</span>])</pre>
+    </div>
+    <div class="code-output-data" hidden>Arash
+20</div>
+  </div>
+
+  <!-- ═══════════════ SECTION 09 — DICT NOTES ═══════════════ -->
+  <h2 class="section-title reveal" id="dict-notes">
+    <span class="num">09</span>
+    <span class="txt">نکات مهم دیکشنری</span>
+  </h2>
+
+  <div class="card reveal">
+    <p>اگر هر عنصر داری عنوان مشخص باشد (مانند نام دانش‌آموز و نمره او)، استفاده از دیکشنری بهتر از لیست است؛ زیرا در دیکشنری می‌توان مستقیماً با نام کلید به مقدار آن دسترسی داشت و نیازی به دانستن اندیس عنصر نیست.</p>
+  </div>
+
+  <div class="note note-warn reveal">
+    <span class="label">کلیدهای تکراری</span>
+    <p>کلیدهای متفاوت می‌توانند مقادیر یکسان داشته باشند. اما اگر کلید در دیکشنری یک‌تا است، اگر همان کلید دوباره مقداردهی شود، مقدار جدید جای مقدار قبلی را می‌گیرد.</p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">duplicate_keys.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="fn">car_dic</span> = {
+    <span class="str">"brand"</span>: <span class="str">"ford"</span>,
+    <span class="str">"model"</span>: <span class="str">"mustang"</span>,
+    <span class="str">"year"</span>: <span class="num">1964</span>,
+    <span class="str">"year"</span>: <span class="num">1920</span>
+}
+<span class="fn">print</span>(car_dic)</pre>
+    </div>
+    <div class="code-output-data" hidden>{'brand': 'ford', 'model': 'mustang', 'year': 1920}</div>
+  </div>
+
+  <div class="try-box reveal">
+    <strong>فعالیت:</strong> یک دیکشنری به نام <code class="inline">book</code> بسازید که اطلاعات یک کتاب را دارد: 
+    <code class="inline">"title"</code>: <code class="inline">"python Basic"</code>، 
+    <code class="inline">"author"</code>: <code class="inline">"Fatemeh"</code>، 
+    <code class="inline">"pages"</code>: <code class="inline">250</code>.
+    نام نویسنده (author) و تعداد صفحات (pages) را چاپ کنید.
+  </div>
+
+  <!-- ═══════════════ SECTION 10 — DICT ADD ═══════════════ -->
+  <h2 class="section-title reveal" id="dict-add">
+    <span class="num">10</span>
+    <span class="txt">اضافه کردن آیتم جدید به دیکشنری</span>
+  </h2>
+
+  <div class="card reveal">
+    <p>برای اضافه کردن یک عضو جدید به dictionary در پایتون، کافی است یک کلید جدید را مقداردهی کنید.</p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">add_to_dict.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="fn">user</span> = {
+    <span class="str">"username"</span>: <span class="str">"ali"</span>,
+    <span class="str">"age"</span>: <span class="num">20</span>
+}
+user[<span class="str">"city"</span>] = <span class="str">"Tehran"</span>
+<span class="fn">print</span>(user)</pre>
+    </div>
+    <div class="code-output-data" hidden>{'username': 'ali', 'age': 20, 'city': 'Tehran'}</div>
+  </div>
+
+  <div class="try-box reveal">
+    <strong>فعالیت:</strong> یک دیکشنری خالی به نام <code class="inline">student</code> بسازید. سپس با استفاده از <code class="inline">input</code> از کاربر نام و نمره را بگیرید و در دیکشنری ذخیره کنید.
+  </div>
+
+  <!-- ═══════════════ SECTION 11 — DICT DEL ═══════════════ -->
+  <h2 class="section-title reveal" id="dict-del">
+    <span class="num">11</span>
+    <span class="txt">حذف عنصر از دیکشنری (del)</span>
+  </h2>
+
+  <div class="card reveal">
+    <p>برای حذف یک کلید از دیکشنری از دستور <code class="inline">del</code> استفاده می‌شود. با این دستور، کلید و مقدار مربوط به آن به طور کامل از دیکشنری حذف می‌شود.</p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">del_from_dict.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="fn">user</span> = {
+    <span class="str">"username"</span>: <span class="str">"ali"</span>,
+    <span class="str">"age"</span>: <span class="num">20</span>,
+    <span class="str">"city"</span>: <span class="str">"Tehran"</span>
+}
+<span class="kw">del</span> user[<span class="str">"age"</span>]
+<span class="fn">print</span>(user)</pre>
+    </div>
+    <div class="code-output-data" hidden>{'username': 'ali', 'city': 'Tehran'}</div>
+  </div>
+
+  <div class="note note-warn reveal">
+    <span class="label">نکته امنیتی</span>
+    <p>در صورتی که قصد حذف کلیدی را دارید که در dictionary وجود ندارد، برنامه با خطا مواجه می‌شود؛ بنابراین قبل از حذف، باید وجود کلید بررسی شود. برای جلوگیری از خطا، از <code class="inline">if "age" in user:</code> استفاده کنید.</p>
+  </div>
+
+  <!-- ═══════════════ SECTION 12 — DICT POP ═══════════════ -->
+  <h2 class="section-title reveal" id="dict-pop">
+    <span class="num">12</span>
+    <span class="txt">حذف عنصر از دیکشنری (pop)</span>
+  </h2>
+
+  <div class="card reveal">
+    <p>برای حذف عنصر از dictionary می‌توانید از متد <code class="inline">pop()</code> نیز استفاده کنید. <code class="inline">pop()</code> عنصری که نام کلید مشخص شده را حذف می‌کند.</p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">pop_from_dict.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="fn">product</span> = {
+    <span class="str">"name"</span>: <span class="str">"Laptop"</span>,
+    <span class="str">"price"</span>: <span class="num">1500</span>,
+    <span class="str">"stock"</span>: <span class="num">10</span>
+}
+
+<span class="cm"># متد pop() علاوه بر حذف، مقدار حذف‌شده را برمی‌گرداند</span>
+<span class="fn">price_value</span> = product.<span class="fn">pop</span>(<span class="str">"price"</span>)
+<span class="fn">print</span>(<span class="str">"Price removed:"</span>, price_value)
+<span class="fn">print</span>(product)</pre>
+    </div>
+    <div class="code-output-data" hidden>Price removed: 1500
+{'name': 'Laptop', 'stock': 10}</div>
+  </div>
+
+  <div class="try-box reveal">
+    <strong>فعالیت:</strong> یک دیکشنری به نام <code class="inline">inventory</code> بسازید که شامل:
+    <code class="inline">"Bag"</code>: <code class="inline">5</code>،
+    <code class="inline">"Ball"</code>: <code class="inline">8</code>،
+    <code class="inline">"Laptop"</code>: <code class="inline">3</code>،
+    <code class="inline">"Mouse"</code>: <code class="inline">10</code>،
+    <code class="inline">"Flash memory"</code>: <code class="inline">14</code> باشد.
+    وجود کالایی با نام <code class="inline">"Bag"</code> را بررسی و در صورت وجود، پیام مناسب چاپ کنید و سپس آن را با متد <code class="inline">pop()</code> حذف کنید و مقدار حذف‌شده را چاپ کنید.
+  </div>
+
+
+
+
+
+  <!-- ═══════════════ SECTION 13 — DICT METHODS ═══════════════ -->
+  <h2 class="section-title reveal" id="dict-methods">
+    <span class="num">13</span>
+    <span class="txt">متدهای پیشرفته دیکشنری</span>
+  </h2>
+
+  <div class="guide reveal">
+    <div class="guide-avatar">🤖</div>
+    <div class="guide-bubble">
+      دیکشنری‌ها متدهای خیلی پرکاربردی دارن که کار باهاشون رو راحت‌تر می‌کنن. 
+      توی این بخش با <code class="inline">get()</code>، <code class="inline">keys()</code>، <code class="inline">values()</code> و <code class="inline">items()</code> آشنا می‌شیم.
+    </div>
+  </div>
+
+  <div class="subsection reveal"><span class="ic">🔍</span> متد get()</div>
+  <div class="card reveal">
+    <p>متد <code class="inline">get()</code> برای دسترسی به مقادیر دیکشنری استفاده می‌شود. مزیت اصلی آن این است که اگر کلید وجود نداشته باشد، <strong>برنامه خطا نمی‌دهد</strong> و مقدار پیش‌فرض (یا <code class="inline">None</code>) را برمی‌گرداند.</p>
+  </div>
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">dict_get.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="fn">person</span> = {<span class="str">"name"</span>: <span class="str">"Ali"</span>, <span class="str">"age"</span>: <span class="num">20</span>}
+
+<span class="cm"># دسترسی امن با get()</span>
+<span class="fn">print</span>(person.<span class="fn">get</span>(<span class="str">"name"</span>))  <span class="cm"># Ali</span>
+<span class="fn">print</span>(person.<span class="fn">get</span>(<span class="str">"city"</span>))  <span class="cm"># None (بدون خطا)</span>
+<span class="fn">print</span>(person.<span class="fn">get</span>(<span class="str">"city"</span>, <span class="str">"Not Found"</span>)) <span class="cm"># Not Found (مقدار پیش‌فرض)</span></pre>
+    </div>
+    <div class="code-output-data" hidden>Ali
+None
+Not Found</div>
+  </div>
+
+  <div class="subsection reveal"><span class="ic">📜</span> پیمایش دیکشنری با keys، values و items</div>
+  <div class="card reveal">
+    <p>برای دیدن کلیدها از <code class="inline">keys()</code>، مقادیر از <code class="inline">values()</code> و هر دو (کلید و مقدار) از <code class="inline">items()</code> استفاده می‌شود. این متدها برای حلقه <code class="inline">for</code> فوق‌العاده هستند.</p>
+  </div>
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">dict_loops.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="fn">scores</span> = {<span class="str">"Math"</span>: <span class="num">18</span>, <span class="str">"Science"</span>: <span class="num">15</span>, <span class="str">"English"</span>: <span class="num">20</span>}
+
+<span class="cm"># فقط کلیدها</span>
+<span class="kw">for</span> key <span class="kw">in</span> scores.<span class="fn">keys</span>():
+    <span class="fn">print</span>(<span class="str">"Subject:"</span>, key)
+
+<span class="cm"># کلید و مقدار با هم (رایج‌ترین حالت)</span>
+<span class="kw">for</span> subject, score <span class="kw">in</span> scores.<span class="fn">items</span>():
+    <span class="fn">print</span>(subject, <span class="str">":"</span>, score)</pre>
+    </div>
+    <div class="code-output-data" hidden>Subject: Math
+Subject: Science
+Subject: English
+Math : 18
+Science : 15
+English : 20</div>
+  </div>
+
+  <div class="try-box reveal">
+    <strong>فعالیت:</strong> یک دیکشنری از ۳ محصول و قیمت آن‌ها بسازید. با استفاده از <code class="inline">items()</code> نام و قیمت هر محصول را چاپ کنید.
+  </div>
+
+  <!-- ═══════════════ NEW: QUIZ 1 ═══════════════ -->
+  <div class="quiz-box reveal">
+    <div class="quiz-header">آزمونک دیکشنری</div>
+    <div class="quiz-question">کدام متد برای حذف یک عنصر از دیکشنری استفاده می‌شود و مقدار حذف‌شده را نیز برمی‌گرداند؟</div>
+    <div class="quiz-options">
+      <div class="quiz-option" data-correct="false"><span class="opt-letter">A</span> remove()</div>
+      <div class="quiz-option" data-correct="false"><span class="opt-letter">B</span> del</div>
+      <div class="quiz-option" data-correct="true"><span class="opt-letter">C</span> pop()</div>
+      <div class="quiz-option" data-correct="false"><span class="opt-letter">D</span> delete()</div>
+    </div>
+    <div class="quiz-feedback"></div>
+  </div>
+
+  <!-- ═══════════════ SECTION 13 — QUIZ PROJECT ═══════════════ -->
+  <h2 class="section-title reveal" id="quiz">
+    <span class="num">13</span>
+    <span class="txt">پروژه بازی Quiz</span>
+  </h2>
+
+  <div class="guide reveal" data-mood="happy">
+    <div class="guide-avatar">🤖</div>
+    <div class="guide-bubble">
+      حالا وقتشه چیزهایی که یاد گرفتیم رو توی یک <strong>پروژه واقعی</strong> به کار ببریم! 
+      می‌خوایم یک بازی مسابقه‌ای (Quiz) بسازیم که سوال می‌پرسه و به جواب صحیح امتیاز می‌ده.
+    </div>
+  </div>
+
+  <div class="card reveal">
+    <p>در این بازی ابتدا منویی که شامل انواع سوالات است نمایش داده می‌شود و کاربر سوال موردعلاقه‌اش را انتخاب می‌کند و سپس به سوالات پاسخ می‌دهد. در صورت پاسخ نادرست، پیام مناسبی نمایش داده می‌شود و پس از پاسخ سوالات، امتیاز کاربر نمایش داده می‌شود.</p>
+  </div>
+
+  <div class="subsection reveal"><span class="ic">📝</span> مراحل ساخت پروژه</div>
+
+  <div class="card reveal">
+    <p><strong>مرحله ۱:</strong> ابتدا منویی ایجاد کنید که شامل انواع سوالات باشد. برای شروع دو نوع سوال (ریاضی و جغرافیا) در نظر بگیرید.</p>
+    <p><strong>مرحله ۲:</strong> سوالات مربوط به هر نوع سوال را بنویسید. از دیکشنری‌ها استفاده کنید.</p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">quiz_game.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="cm"># ۱. منوی اصلی</span>
+<span class="fn">menu</span> = {
+    <span class="str">"1"</span>: <span class="str">"Math Quiz"</span>,
+    <span class="str">"2"</span>: <span class="str">"Geography Quiz"</span>,
+    <span class="str">"3"</span>: <span class="str">"Exit"</span>
+}
+
+<span class="cm"># ۲. سوالات ریاضی و جغرافیا</span>
+<span class="fn">math_quiz</span> = {
+    <span class="str">"2 + 2 = ?"</span>: <span class="str">"4"</span>,
+    <span class="str">"5 * 3 = ?"</span>: <span class="str">"15"</span>,
+    <span class="str">"10 - 7 = ?"</span>: <span class="str">"3"</span>
+}
+<span class="fn">geo_quiz</span> = {
+    <span class="str">"Capital of Iran?"</span>: <span class="str">"Tehran"</span>,
+    <span class="str">"Capital of France?"</span>: <span class="str">"Paris"</span>,
+    <span class="str">"Capital of Japan?"</span>: <span class="str">"Tokyo"</span>
+}
+
+<span class="cm"># ۳. نمایش منو و دریافت انتخاب</span>
+<span class="fn">print</span>(<span class="str">"Welcome to Quiz Game!"</span>)
+<span class="fn">print</span>(<span class="str">"Menu:"</span>)
+<span class="kw">for</span> key <span class="kw">in</span> menu:
+    <span class="fn">print</span>(key, <span class="str">"-"</span>, menu[key])
+
+<span class="fn">choice</span> = <span class="fn">input</span>(<span class="str">"Select an option: "</span>)
+
+<span class="cm"># ۴. اجرای کوییز بر اساس انتخاب</span>
+<span class="fn">score</span> = <span class="num">0</span>
+
+<span class="kw">if</span> choice == <span class="str">"1"</span>:
+    <span class="fn">print</span>(<span class="str">"\nMath Quiz"</span>)
+    <span class="kw">for</span> question <span class="kw">in</span> math_quiz:
+        answer = <span class="fn">input</span>(question + <span class="str">" "</span>)
+        <span class="kw">if</span> answer == math_quiz[question]:
+            <span class="fn">print</span>(<span class="str">"Correct!"</span>)
+            score += <span class="num">1</span>
+        <span class="kw">else</span>:
+            <span class="fn">print</span>(<span class="str">"Wrong!"</span>)
+
+<span class="kw">elif</span> choice == <span class="str">"2"</span>:
+    <span class="fn">print</span>(<span class="str">"\nGeography Quiz"</span>)
+    <span class="kw">for</span> question <span class="kw">in</span> geo_quiz:
+        answer = <span class="fn">input</span>(question + <span class="str">" "</span>)
+        <span class="kw">if</span> answer == geo_quiz[question]:
+            <span class="fn">print</span>(<span class="str">"Correct!"</span>)
+            score += <span class="num">1</span>
+        <span class="kw">else</span>:
+            <span class="fn">print</span>(<span class="str">"Wrong!"</span>)
+
+<span class="kw">elif</span> choice == <span class="str">"3"</span>:
+    <span class="fn">print</span>(<span class="str">"Exiting the game..."</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"Invalid option"</span>)
+
+<span class="cm"># ۵. نمایش امتیاز</span>
+<span class="kw">if</span> choice <span class="kw">in</span> [<span class="str">"1"</span>, <span class="str">"2"</span>]:
+    <span class="fn">print</span>(<span class="str">"\nYour final score is:"</span>, score)</pre>
+    </div>
+    <div class="code-output-data" hidden>Welcome to Quiz Game!
+Menu:
+1 - Math Quiz
+2 - Geography Quiz
+3 - Exit
+Select an option: 1
+
+Math Quiz
+2 + 2 = ? 4
+Correct!
+5 * 3 = ? 15
+Correct!
+10 - 7 = ? 3
+Correct!
+
+Your final score is: 3</div>
+  </div>
+
+  <!-- ═══════════════ SECTION 14 — TUPLES ═══════════════ -->
+  <h2 class="section-title reveal" id="tuples">
+    <span class="num">14</span>
+    <span class="txt">تاپل (Tuple)</span>
+  </h2>
+
+  <div class="guide reveal">
+    <div class="guide-avatar">🤖</div>
+    <div class="guide-bubble">
+      تاپل‌ها شبیه لیست‌ها هستن، اما یه تفاوت خیلی مهم دارن: <strong>تغییرناپذیرن!</strong> 
+      یعنی بعد از اینکه ساختیشون، دیگه نمی‌تونی عناصر داخلشون رو تغییر بدی. مثل یه سنگ حکاکی شده می‌مونن! 🗿
+    </div>
+  </div>
+
+  <div class="card reveal">
+    <p>تاپل در پایتون دنباله‌ای از داده‌های ترتیبی و تغییر ناپذیر است. به کمک تاپل‌ها می‌توانید چندین مقدار از داده‌های مختلف را در یک متغیر ذخیره و روی آن‌ها عملیات انجام دهید. این ساختار داده را زمانی استفاده می‌کنیم که بخواهید داده‌ها در طول برنامه، تعداد ثابت خود شما و سایر برنامه‌نویسان هم تغییر نکنند.</p>
+  </div>
+
+    <!-- IMAGE: TUPLE -->
+  <div class="figure-card reveal">
+    <div class="fig-head">
+      <span class="fig-num">۰۳</span>
+      <span class="fig-title">تغییرناپذیری در تاپل (Immutable)</span>
+    </div>
+    <div class="fig-body">
+      <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="تاپل قفل شده">
+        <rect width="600" height="220" fill="var(--bg-2)" rx="10"/>
+        
+        <!-- Lock Icon -->
+        <g transform="translate(300, 50)">
+          <rect x="-15" y="0" width="30" height="25" rx="5" fill="#f59e0b"/>
+          <path d="M -10 0 L -10 -10 A 10 10 0 0 1 10 -10 L 10 0" stroke="#f59e0b" stroke-width="4" fill="none"/>
+          <circle cx="0" cy="12" r="4" fill="#fff"/>
+        </g>
+        
+        <!-- Tuple Box -->
+        <rect x="150" y="100" width="300" height="60" rx="15" fill="var(--surface-solid)" stroke="var(--border-strong)" stroke-width="2"/>
+        
+        <!-- Items -->
+        <circle cx="210" cy="130" r="15" fill="#3b82f6" opacity="0.2"/>
+        <text x="210" y="136" font-family="JetBrains Mono, monospace" font-size="14" fill="#3b82f6" text-anchor="middle">1</text>
+        
+        <circle cx="270" cy="130" r="15" fill="#3b82f6" opacity="0.2"/>
+        <text x="270" y="136" font-family="JetBrains Mono, monospace" font-size="14" fill="#3b82f6" text-anchor="middle">2</text>
+        
+        <circle cx="330" cy="130" r="15" fill="#3b82f6" opacity="0.2"/>
+        <text x="330" y="136" font-family="JetBrains Mono, monospace" font-size="14" fill="#3b82f6" text-anchor="middle">3</text>
+        
+        <circle cx="390" cy="130" r="15" fill="#3b82f6" opacity="0.2"/>
+        <text x="390" y="136" font-family="JetBrains Mono, monospace" font-size="14" fill="#3b82f6" text-anchor="middle">4</text>
+
+        <!-- Cross Sign (Immutable) -->
+        <g transform="translate(470, 140)">
+           <circle cx="0" cy="0" r="15" fill="#f43f5e"/>
+           <path d="M -6 -6 L 6 6 M -6 6 L 6 -6" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        
+        <text x="300" y="200" font-family="Vazirmatn, sans-serif" font-weight="700" font-size="14" fill="var(--text-2)" text-anchor="middle">پس از ساخت تاپل، عناصر آن قابل تغییر، حذف یا اضافه شدن نیستند</text>
+      </svg>
+    </div>
+    <div class="fig-caption">
+      <strong>شکل ۳:</strong> تاپل‌ها مانند یک جعبه قفل شده هستند؛ یک بار پر می‌شوند و دیگر تغییر نمی‌کنند.
+    </div>
+  </div>
+
+  <div class="subsection reveal"><span class="ic">🛠️</span> ایجاد تاپل</div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">create_tuple.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="cm"># یک تاپل با مقادیر رشته‌ای</span>
+<span class="fn">username</span> = (<span class="str">"super_admin"</span>, <span class="str">"manager_admin"</span>, <span class="str">"teacher_admin"</span>)
+<span class="fn">print</span>(username)
+
+<span class="cm"># یک تاپل از روزهای هفته (مقادیر تغییرپذیر نیستند)</span>
+<span class="fn">days</span> = (<span class="str">"Monday"</span>, <span class="str">"Tuesday"</span>, <span class="str">"Wednesday"</span>, <span class="str">"Thursday"</span>, <span class="str">"Friday"</span>, <span class="str">"Saturday"</span>, <span class="str">"Sunday"</span>)
+<span class="fn">print</span>(days)</pre>
+    </div>
+    <div class="code-output-data" hidden>('super_admin', 'manager_admin', 'teacher_admin')
+('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')</div>
+  </div>
+
+  <!-- ═══════════════ SECTION 15 — TUPLES ACCESS ═══════════════ -->
+  <h2 class="section-title reveal" id="tuples-access">
+    <span class="num">15</span>
+    <span class="txt">دسترسی به عناصر و تغییرناپذیری</span>
+  </h2>
+
+  <div class="card reveal">
+    <p>عناصر تاپل هم دارای <strong>index</strong> هستند و دسترسی به عنصر با شماره‌ی اندیس آن انجام می‌شود. عناصر تاپل <em>تغییرناپذیر (immutable)</em> هستند. یعنی اگر بخواهید بعد از مقداردهی اولیه، آن‌ها را تغییر دهید، برنامه خطا می‌دهد.</p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">tuple_index.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="fn">name_port</span> = (<span class="str">"LPT1"</span>, <span class="str">"USB1"</span>, <span class="str">"USB2"</span>, <span class="str">"HDMI"</span>)
+<span class="fn">print</span>(name_port[<span class="num">2</span>])  <span class="cm"># دسترسی به سومین عنصر (اندیس ۲)</span></pre>
+    </div>
+    <div class="code-output-data" hidden>USB2</div>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python" data-output-type="error">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">tuple_error.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="fn">daru</span> = (<span class="str">"Acetaminophen"</span>, <span class="str">"Aspirin"</span>)
+<span class="cm"># تلاش برای تغییر مقدار دوم</span>
+daru[<span class="num">1</span>] = <span class="str">"adult cold"</span>
+<span class="fn">print</span>(daru)</pre>
+    </div>
+    <div class="code-output-data" hidden>Traceback (most recent call last):
+  File "tuple_error.py", line 3, in &lt;module&gt;
+    daru[1] = "adult cold"
+TypeError: 'tuple' object does not support item assignment</div>
+  </div>
+
+  <!-- ═══════════════ SECTION 16 — TUPLES DEL ═══════════════ -->
+  <h2 class="section-title reveal" id="tuples-del">
+    <span class="num">16</span>
+    <span class="txt">حذف تاپل</span>
+  </h2>
+
+  <div class="card reveal">
+    <p>در پایتون امکان حذف عنصر یک تاپل وجود ندارد. ولی می‌توانید کل یک تاپل را با استفاده از دستور <code class="inline">del</code> حذف کنید. بعد از اجرای آن، تاپل از بین می‌رود.</p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python" data-output-type="error">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">del_tuple.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="fn">days</span> = (<span class="str">"Monday"</span>, <span class="str">"Tuesday"</span>, <span class="str">"Wednesday"</span>, <span class="str">"Thursday"</span>, <span class="str">"Friday"</span>, <span class="str">"Saturday"</span>, <span class="str">"Sunday"</span>)
+<span class="kw">del</span> days
+<span class="fn">print</span>(days)  <span class="cm"># این خط باعث خطا می‌شود</span></pre>
+    </div>
+    <div class="code-output-data" hidden>Traceback (most recent call last):
+  File "del_tuple.py", line 3, in &lt;module&gt;
+    print(days)
+NameError: name 'days' is not defined</div>
+  </div>
+
+  <!-- ═══════════════ SECTION 17 — FUNCTIONS ═══════════════ -->
+  <h2 class="section-title reveal" id="functions">
+    <span class="num">17</span>
+    <span class="txt">آشنایی با توابع (Function)</span>
+  </h2>
+
+  <div class="guide reveal">
+    <div class="guide-avatar">🤖</div>
+    <div class="guide-bubble">
+      از اینجا به بعد، وارد دنیای <strong>توابع</strong> می‌شیم! 
+      توابع مثل دستورهای آشپزی می‌مونن. یه بار می‌نویسیشون و هر وقت خواستی ازشون استفاده می‌کنی، بدون اینکه دوباره از اول بنویسی!
+    </div>
+  </div>
+
+  <div class="card reveal">
+    <p>توابع در برنامه‌نویسی، بلوک یا قطعه کدی است که یک‌بار آن را تعریف کرده و بارها آن را در چندین مکان برنامه می‌توان به صورت فراخوانی کرد.</p>
+    <p><strong>مزایای استفاده از تابع:</strong></p>
+    <ul>
+      <li>برنامه‌نویس با تعریف یک تابع، تنها یک کار مورد نظر را می‌نویسد و سپس در هر نقطه‌ای از برنامه که نیاز به انجام آن کار باشد، آن را فراخوانی و استفاده می‌کند.</li>
+      <li>تقسیم کد به تکه‌های کوچک و مشخص، درک و فهم کد را به طور چشمگیری افزایش می‌دهد.</li>
+      <li>یافتن و رفع اشکالات و احتمال تغییرات در کد بسیار ساده‌تر می‌شود.</li>
+      <li>سازماندهی کدها به صورت منظم و مرتب و ساختار کلی برنامه آسان‌تر می‌شود.</li>
+    </ul>
+  </div>
+
+
+    <!-- IMAGE: FUNCTION MACHINE -->
+  <div class="figure-card reveal">
+    <div class="fig-head">
+      <span class="fig-num">۰۴</span>
+      <span class="fig-title">تابع؛ ماشینی با ورودی و خروجی</span>
+    </div>
+    <div class="fig-body">
+      <svg viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ماشین تابع">
+        <rect width="600" height="240" fill="var(--bg-2)" rx="10"/>
+        
+        <!-- Inputs -->
+        <rect x="50" y="50" width="80" height="40" rx="8" fill="#3b82f6" opacity="0.8"/>
+        <text x="90" y="76" font-family="JetBrains Mono, monospace" font-weight="800" font-size="18" fill="#fff" text-anchor="middle">x</text>
+        
+        <rect x="50" y="150" width="80" height="40" rx="8" fill="#3b82f6" opacity="0.8"/>
+        <text x="90" y="176" font-family="JetBrains Mono, monospace" font-weight="800" font-size="18" fill="#fff" text-anchor="middle">y</text>
+
+        <!-- Arrows In -->
+        <path d="M 140 70 L 220 110" stroke="var(--text-3)" stroke-width="3" marker-end="url(#arrowhead2)"/>
+        <path d="M 140 170 L 220 130" stroke="var(--text-3)" stroke-width="3" marker-end="url(#arrowhead2)"/>
+        <defs>
+          <marker id="arrowhead2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="var(--text-3)" />
+          </marker>
+        </defs>
+
+        <!-- The Box -->
+        <rect x="230" y="60" width="140" height="120" rx="15" fill="var(--surface-solid)" stroke="#8b5cf6" stroke-width="4" stroke-dasharray="10 5"/>
+        <text x="300" y="115" font-family="Vazirmatn, sans-serif" font-weight="900" font-size="20" fill="#8b5cf6" text-anchor="middle">def add</text>
+        <text x="300" y="145" font-family="JetBrains Mono, monospace" font-size="14" fill="var(--text-2)" text-anchor="middle">x + y</text>
+        
+        <!-- Arrow Out -->
+        <path d="M 380 120 L 460 120" stroke="var(--text-3)" stroke-width="3" marker-end="url(#arrowhead2)"/>
+        
+        <!-- Output -->
+        <rect x="470" y="95" width="80" height="50" rx="8" fill="#10b981" opacity="0.9"/>
+        <text x="510" y="126" font-family="JetBrains Mono, monospace" font-weight="800" font-size="18" fill="#fff" text-anchor="middle">x+y</text>
+        
+        <!-- Labels -->
+        <text x="90" y="35" font-family="Vazirmatn, sans-serif" font-weight="700" font-size="14" fill="var(--text-2)" text-anchor="middle">ورودی‌ها (آرگومان)</text>
+        <text x="510" y="80" font-family="Vazirmatn, sans-serif" font-weight="700" font-size="14" fill="var(--text-2)" text-anchor="middle">خروجی (return)</text>
+      </svg>
+    </div>
+    <div class="fig-caption">
+      <strong>شکل ۴:</strong> تابع مانند یک ماشین عمل می‌کند؛ چیزی به آن می‌دهید (Input)، پردازش می‌کند و چیزی تحویل می‌گیرید (Output).
+    </div>
+  </div>
+
+  <!-- ═══════════════ SECTION 18 — FUNCTIONS DEFINE ═══════════════ -->
+  <h2 class="section-title reveal" id="functions-define">
+    <span class="num">18</span>
+    <span class="txt">تعریف و فراخوانی تابع</span>
+  </h2>
+
+  <div class="card reveal">
+    <p>یک تابع با استفاده از کلمه کلیدی <code class="inline">def</code> تعریف می‌شود و به دنبال آن نام تابع و پرانتز قرار می‌گیرد.</p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">simple_function.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="cm"># تعریف تابع</span>
+<span class="kw">def</span> <span class="fn">show_store_name</span>():
+    <span class="fn">print</span>(<span class="str">"Digital Online Store"</span>)
+
+<span class="cm"># فراخوانی تابع</span>
+<span class="fn">show_store_name</span>()</pre>
+    </div>
+    <div class="code-output-data" hidden>Digital Online Store</div>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">greet_function.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="kw">def</span> <span class="fn">greet</span>():
+    <span class="fn">print</span>(<span class="str">"Hello!"</span>)
+
+<span class="fn">greet</span>()</pre>
+    </div>
+    <div class="code-output-data" hidden>Hello!</div>
+  </div>
+
+  <!-- ═══════════════ SECTION 19 — FUNCTIONS PARAMS ═══════════════ -->
+  <h2 class="section-title reveal" id="functions-params">
+    <span class="num">19</span>
+    <span class="txt">پارامتر و آرگومان</span>
+  </h2>
+
+  <div class="card reveal">
+    <p><strong>پارامتر چیست؟</strong> تابع می‌تواند ورودی‌هایی را دریافت کند. به ورودی‌های تابع در زمان تعریف تابع، پارامتر (parameter) گفته می‌شود.</p>
+    <p><strong>آرگومان چیست؟</strong> ورودی‌های تابع که هنگام فراخوانی تابع به آن داده می‌شود.</p>
+    <p>برای فراخوانی یک تابع، کافی است نام آن را نوشته و به تعداد پارامترها به آن آرگومان ارسال کنید (که در اصطلاح به آن «پاس دادن» می‌گویند). همچنین، یک تابع را می‌توان بارها فراخوانی کرد.</p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">function_params.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="kw">def</span> <span class="fn">show_product</span>(name, price):
+    <span class="fn">print</span>(<span class="str">"Product:"</span>, name, <span class="str">"Price:"</span>, price)
+
+<span class="cm"># فراخوانی تابع با ارسال آرگومان‌ها</span>
+<span class="fn">show_product</span>(<span class="str">"Laptop"</span>, <span class="num">5000000</span>)
+<span class="fn">show_product</span>(<span class="str">"Mobile"</span>, <span class="num">3000000</span>)</pre>
+    </div>
+    <div class="code-output-data" hidden>Product: Laptop Price: 5000000
+Product: Mobile Price: 3000000</div>
+  </div>
+
+  <div class="note note-warn reveal">
+    <span class="label">نکته مهم</span>
+    <p>تعداد و ترتیب آرگومان‌های ارسالی باید با تعداد و ترتیب پارامترهای تابع یکسان باشد. اگر تعداد آرگومان‌ها نادرست باشد، برنامه با خطا مواجه می‌شود.</p>
+  </div>
+
+  <!-- ═══════════════ SECTION 20 — FUNCTIONS ARGS TYPE ═══════════════ -->
+  <h2 class="section-title reveal" id="functions-args-type">
+    <span class="num">20</span>
+    <span class="txt">آرگومان‌های ترتیبی و کلیدی</span>
+  </h2>
+
+  <div class="card reveal">
+    <p><strong>آرگومان‌های ترتیبی:</strong> وقتی آرگومان‌ها بدون نام پارامتر به تابع داده شوند، ترتیب آن‌ها مهم است.</p>
+    <p><strong>آرگومان‌های کلیدی:</strong> می‌توان آرگومان‌ها را با نام پارامتر به تابع فرستاد. این کار ترتیب را بی‌اهمیت می‌کند و از اشتباه جلوگیری می‌کند.</p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">keyword_args.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="kw">def</span> <span class="fn">show_product</span>(name, price):
+    <span class="fn">print</span>(<span class="str">"Product:"</span>, name, <span class="str">"Price:"</span>, price)
+
+<span class="cm"># بدون نام (ترتیبی)</span>
+<span class="fn">show_product</span>(<span class="str">"Laptop"</span>, <span class="num">5000000</span>)
+
+<span class="cm"># با نام پارامتر (کلیدی)</span>
+<span class="fn">show_product</span>(price=<span class="num">5000000</span>, name=<span class="str">"Laptop"</span>)</pre>
+    </div>
+    <div class="code-output-data" hidden>Product: Laptop Price: 5000000
+Product: Laptop Price: 5000000</div>
+  </div>
+
+  <!-- ═══════════════ SECTION 21 — DEFAULT PARAMS ═══════════════ -->
+  <h2 class="section-title reveal" id="functions-default">
+    <span class="num">21</span>
+    <span class="txt">مقادیر پیش‌فرض پارامتر</span>
+  </h2>
+
+  <div class="card reveal">
+    <p>می‌توان برای پارامتر مقدار پیش‌فرض تعیین کرد. اگر آرگومان داده نشود، مقدار پیش‌فرض استفاده می‌شود.</p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">default_param.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="kw">def</span> <span class="fn">delivery</span>(city=<span class="str">"Tehran"</span>):
+    <span class="fn">print</span>(<span class="str">"Delivery city:"</span>, city)
+
+<span class="cm"># بدون آرگومان</span>
+<span class="fn">delivery</span>()
+
+<span class="cm"># با آرگومان</span>
+<span class="fn">delivery</span>(<span class="str">"Isfahan"</span>)</pre>
+    </div>
+    <div class="code-output-data" hidden>Delivery city: Tehran
+Delivery city: Isfahan</div>
+  </div>
+
+  <div class="try-box reveal">
+    <strong>فعالیت:</strong> تابعی بنویسید که دو عدد را به عنوان پارامتر دریافت و حاصل جمع آن‌ها را نشان دهد.
+  </div>
+
+  <!-- ═══════════════ SECTION 22 — RETURN ═══════════════ -->
+  <h2 class="section-title reveal" id="functions-return">
+    <span class="num">22</span>
+    <span class="txt">مقدار بازگشتی تابع (Return Value)</span>
+  </h2>
+
+  <div class="guide reveal" data-mood="think">
+    <div class="guide-avatar">🤖</div>
+    <div class="guide-bubble">
+      تا حالا توابع ما فقط چاپ می‌کردن. اما اگه بخوایم نتیجه‌ی کار تابع رو توی یک متغیر ذخیره کنیم و بعداً ازش استفاده کنیم چی؟ اینجاست که کلمه کلیدی <code class="inline">return</code> وارد میشه!
+    </div>
+  </div>
+
+  <div class="card reveal">
+    <p>تابع می‌تواند مقداری را محاسبه کند و سپس به برنامه برگرداند؛ به این عمل بازگشت مقدار <strong>(Return Value)</strong> گفته می‌شود. این کار توسط دستور <code class="inline">return</code> انجام می‌شود.</p>
+    <p><strong>نکته:</strong> اگر تابعی مقداری را با <code class="inline">return</code> برنگرداند، مقدار پیش‌فرض آن <code class="inline">None</code> است (یعنی هیچ مقداری).</p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">no_return.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="kw">def</span> <span class="fn">add</span>(a, b):
+    <span class="fn">print</span>(a + b)
+
+<span class="fn">add</span>(<span class="num">3</span>, <span class="num">5</span>)</pre>
+    </div>
+    <div class="code-output-data" hidden>8</div>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">with_return.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="kw">def</span> <span class="fn">add</span>(a, b):
+    <span class="kw">return</span> a + b
+
+<span class="fn">result</span> = <span class="fn">add</span>(<span class="num">3</span>, <span class="num">5</span>)
+<span class="fn">print</span>(result)</pre>
+    </div>
+    <div class="code-output-data" hidden>8</div>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">total_price_no_return.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="kw">def</span> <span class="fn">total_price</span>(price, count):
+    <span class="fn">print</span>(price * count)
+
+<span class="fn">x</span> = <span class="fn">total_price</span>(<span class="num">200000</span>, <span class="num">2</span>)
+<span class="fn">print</span>(x) <span class="cm"># خروجی None خواهد بود چون return نداریم</span></pre>
+    </div>
+    <div class="code-output-data" hidden>400000
+None</div>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">total_price_with_return.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="kw">def</span> <span class="fn">total_price</span>(price, count):
+    <span class="kw">return</span> price * count
+
+<span class="fn">x</span> = <span class="fn">total_price</span>(<span class="num">200000</span>, <span class="num">2</span>)
+<span class="fn">print</span>(x)</pre>
+    </div>
+    <div class="code-output-data" hidden>400000</div>
+  </div>
+
+  <div class="try-box reveal">
+    <strong>فعالیت:</strong> تابعی به نام <code class="inline">avg_numbers</code> بسازید که سه عدد دریافت کرده و میانگین آن‌ها را برگرداند.
+  </div>
+
+  <!-- ═══════════════ SECTION 23 — FUNCTIONS & LOOPS ═══════════════ -->
+  <h2 class="section-title reveal" id="functions-loops">
+    <span class="num">23</span>
+    <span class="txt">استفاده از حلقه در داخل تابع</span>
+  </h2>
+
+  <div class="card reveal">
+    <p>استفاده از حلقه در داخل تابع به این منظور است که بتوانید دستورات مشخصی را چندین بار و به‌صورت خودکار، تا زمانی که شرط تعیین‌شده برقرار است یا تعداد مشخصی تکرار شود، اجرا کنید. این کار باعث کاهش کدها، افزایش خوانایی و بهینه‌سازی عملکرد تابع می‌شود.</p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">show_numbers.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="kw">def</span> <span class="fn">show_numbers</span>():
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, <span class="num">6</span>):
+        <span class="fn">print</span>(<span class="str">"python"</span>)
+
+<span class="fn">show_numbers</span>()</pre>
+    </div>
+    <div class="code-output-data" hidden>python
+python
+python
+python
+python</div>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">show_names.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="kw">def</span> <span class="fn">show_names</span>(names):
+    <span class="kw">for</span> name <span class="kw">in</span> names:
+        <span class="fn">print</span>(name)
+
+<span class="fn">students</span> = [<span class="str">"saman"</span>, <span class="str">"sohrab"</span>, <span class="str">"Reza"</span>]
+<span class="fn">show_names</span>(students)</pre>
+    </div>
+    <div class="code-output-data" hidden>saman
+sohrab
+Reza</div>
+  </div>
+
+
+  <!-- ═══════════════ SECTION 24 — ARGS & KWARGS ═══════════════ -->
+  <h2 class="section-title reveal" id="args-kwargs">
+    <span class="num">24</span>
+    <span class="txt">آرگومان‌های نامحدود (*args و **kwargs)</span>
+  </h2>
+
+  <div class="guide reveal" data-mood="think">
+    <div class="guide-avatar">🤖</div>
+    <div class="guide-bubble">
+      فرض کن می‌خوای یه تابع بنویسی که هر تعداد عدد رو بگیره و جمع بزنه. نمی‌دونی کاربر ۲ تا می‌ده یا ۱۰ تا! 
+      اینجاست که <strong>آرگومان‌های نامحدود</strong> وارد عمل میشن.
+    </div>
+  </div>
+
+  <div class="subsection reveal"><span class="ic">🌟</span> کار با *args (آرگومان‌های متغیر)</div>
+  <div class="card reveal">
+    <p>اگر قبل از نام پارامتر یک ستاره (<code class="inline">*</code>) قرار دهید، پایتون تمام آرگومان‌های اضافی را به صورت یک <strong>تاپل (tuple)</strong> دریافت می‌کند. به این <code class="inline">*args</code> می‌گویند.</p>
+  </div>
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">args_demo.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="kw">def</span> <span class="fn">sum_all</span>(*numbers):
+    <span class="fn">print</span>(<span class="str">"Type:"</span>, <span class="kw">type</span>(numbers))
+    <span class="fn">print</span>(<span class="str">"Numbers:"</span>, numbers)
+    <span class="kw">return</span> <span class="fn">sum</span>(numbers)
+
+<span class="fn">print</span>(<span class="str">"Total:"</span>, <span class="fn">sum_all</span>(<span class="num">5</span>, <span class="num">10</span>, <span class="num">15</span>))
+<span class="fn">print</span>(<span class="str">"Total:"</span>, <span class="fn">sum_all</span>(<span class="num">1</span>, <span class="num">2</span>))</pre>
+    </div>
+    <div class="code-output-data" hidden>Type: <class 'tuple'>
+Numbers: (5, 10, 15)
+Total: 30
+Type: <class 'tuple'>
+Numbers: (1, 2)
+Total: 3</div>
+  </div>
+
+  <div class="subsection reveal"><span class="ic">🔑</span> کار با **kwargs (آرگومان‌های کلیدی متغیر)</div>
+  <div class="card reveal">
+    <p>اگر قبل از نام پارامتر دو ستاره (<code class="inline">**</code>) قرار دهید، پایتون آرگومان‌های کلیدی اضافی را به صورت یک <strong>دیکشنری (dict)</strong> دریافت می‌کند. به این <code class="inline">**kwargs</code> می‌گویند. این برای توابعی که تنظیمات زیادی دارند عالی است.</p>
+  </div>
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">kwargs_demo.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="kw">def</span> <span class="fn">create_profile</span>(name, **info):
+    <span class="fn">print</span>(<span class="str">"Name:"</span>, name)
+    <span class="kw">for</span> key, value <span class="kw">in</span> info.<span class="fn">items</span>():
+        <span class="fn">print</span>(<span class="str">" -"</span>, key, <span class="str">":"</span>, value)
+
+<span class="fn">create_profile</span>(<span class="str">"Ali"</span>, age=<span class="num">20</span>, city=<span class="str">"Tehran"</span>, job=<span class="str">"Developer"</span>)</pre>
+    </div>
+    <div class="code-output-data" hidden>Name: Ali
+ - age : 20
+ - city : Tehran
+ - job : Developer</div>
+  </div>
+
+  <div class="key-takeaway reveal">
+    <h4>نکته طلایی این بخش</h4>
+    <ul>
+      <li><code class="inline">*args</code> = تعداد نامحدودی آرگومان ترتیبی (به صورت تاپل)</li>
+      <li><code class="inline">**kwargs</code> = تعداد نامحدودی آرگومان کلیدی (به صورت دیکشنری)</li>
+      <li>این ابزارها توابع شما را فوق‌العاده منعطف می‌کنند.</li>
+    </ul>
+  </div>
+
+
+
+
+
+
+  <!-- ═══════════════ NEW: QUIZ 2 ═══════════════ -->
+  <div class="quiz-box reveal">
+    <div class="quiz-header">آزمونک توابع</div>
+    <div class="quiz-question">اگر در یک تابع از کلمه کلیدی <code class="inline">return</code> استفاده نکنیم، مقدار بازگشتی آن چه خواهد بود؟</div>
+    <div class="quiz-options">
+      <div class="quiz-option" data-correct="false"><span class="opt-letter">A</span> 0</div>
+      <div class="quiz-option" data-correct="false"><span class="opt-letter">B</span> خطا می‌دهد</div>
+      <div class="quiz-option" data-correct="true"><span class="opt-letter">C</span> None</div>
+      <div class="quiz-option" data-correct="false"><span class="opt-letter">D</span> آخرین مقدار متغیر</div>
+    </div>
+    <div class="quiz-feedback"></div>
+  </div>
+
+  <!-- ═══════════════ SECTION 24 — BUILT-IN FUNCTIONS ═══════════════ -->
+  <h2 class="section-title reveal" id="built-in-functions">
+    <span class="num">24</span>
+    <span class="txt">انواع توابع در پایتون</span>
+  </h2>
+
+  <div class="card reveal">
+    <p>توابعی که تاکنون تعریف کردید <strong>توابع کاربر-تعریف (User-Defined Function)</strong> هستند. اما پایتون دارای توابع آماده‌ای است که <strong>توابع داخلی (Built-in Functions)</strong> نامیده می‌شوند. این توابع از قبل تعریف شده‌اند و کارهای رایج و تکراری را سریع‌تر انجام می‌دهند.</p>
+  </div>
+
+  <div class="card reveal">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>نام تابع</th>
+            <th>کاربرد</th>
+            <th>مثال</th>
+            <th>خروجی</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td data-label="نام تابع"><code class="inline">abs()</code></td><td data-label="کاربرد">قدرمطلق عدد</td><td data-label="مثال"><code class="inline">print(abs(-12))</code></td><td data-label="خروجی">12</td></tr>
+          <tr><td data-label="نام تابع"><code class="inline">round()</code></td><td data-label="کاربرد">گرد کردن عدد اعشاری</td><td data-label="مثال"><code class="inline">print(round(3.6))</code></td><td data-label="خروجی">4</td></tr>
+          <tr><td data-label="نام تابع"><code class="inline">pow()</code></td><td data-label="کاربرد">محاسبه توان</td><td data-label="مثال"><code class="inline">print(pow(2, 3))</code></td><td data-label="خروجی">8</td></tr>
+          <tr><td data-label="نام تابع"><code class="inline">int()</code></td><td data-label="کاربرد">تبدیل به عدد صحیح</td><td data-label="مثال"><code class="inline">print(int(4.8))</code></td><td data-label="خروجی">4</td></tr>
+          <tr><td data-label="نام تابع"><code class="inline">float()</code></td><td data-label="کاربرد">تبدیل به عدد اعشاری</td><td data-label="مثال"><code class="inline">print(float(5))</code></td><td data-label="خروجی">5.0</td></tr>
+          <tr><td data-label="نام تابع"><code class="inline">max()</code></td><td data-label="کاربرد">بزرگ‌ترین عدد</td><td data-label="مثال"><code class="inline">print(max(3, 9, 5))</code></td><td data-label="خروجی">9</td></tr>
+          <tr><td data-label="نام تابع"><code class="inline">min()</code></td><td data-label="کاربرد">کوچک‌ترین عدد</td><td data-label="مثال"><code class="inline">print(min(3, 9, 5))</code></td><td data-label="خروجی">3</td></tr>
+          <tr><td data-label="نام تابع"><code class="inline">sum()</code></td><td data-label="کاربرد">جمع چند عدد</td><td data-label="مثال"><code class="inline">print(sum([2, 4, 6]))</code></td><td data-label="خروجی">12</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════ SECTION 25 — CALCULATOR PROJECT ═══════════════ -->
+  <h2 class="section-title reveal" id="calculator-project">
+    <span class="num">25</span>
+    <span class="txt">پروژه ماشین‌حساب</span>
+  </h2>
+
+  <div class="card reveal">
+    <p>یک ماشین‌حساب با استفاده از توابع آماده ایجاد کنید. بخش‌هایی از کدهای مربوط به این برنامه نوشته شده است. با راهنمایی هر مرحله خود کدها را تکمیل کنید.</p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">calculator.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="fn">print</span>(<span class="str">"Simple Calculator"</span>)
+<span class="fn">print</span>(<span class="str">"1- Addition"</span>)
+<span class="fn">print</span>(<span class="str">"2- Absolute Difference"</span>)
+<span class="fn">print</span>(<span class="str">"3- Power"</span>)
+<span class="fn">print</span>(<span class="str">"4- Division (Quotient & Remainder)"</span>)
+<span class="fn">print</span>(<span class="str">"5- Round a Number"</span>)
+<span class="fn">print</span>(<span class="str">"6- Max & Min"</span>)
+<span class="fn">print</span>(<span class="str">"7- Sum"</span>)
+<span class="fn">print</span>(<span class="str">"8- Convert to Integer (int)"</span>)
+<span class="fn">print</span>(<span class="str">"9- Convert to Float (float)"</span>)
+
+<span class="fn">choice</span> = <span class="fn">input</span>(<span class="str">"Select an option (1-9): "</span>)
+
+<span class="kw">if</span> choice == <span class="str">"1"</span>:
+    a = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Enter first number: "</span>))
+    b = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Enter second number: "</span>))
+    <span class="fn">print</span>(<span class="str">"Result:"</span>, <span class="fn">sum</span>([a, b]))
+
+<span class="kw">elif</span> choice == <span class="str">"2"</span>:
+    a = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Enter first number: "</span>))
+    b = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Enter second number: "</span>))
+    <span class="fn">print</span>(<span class="str">"Result:"</span>, <span class="fn">abs</span>(a - b))
+
+<span class="kw">elif</span> choice == <span class="str">"3"</span>:
+    a = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Enter base: "</span>))
+    b = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Enter exponent: "</span>))
+    <span class="fn">print</span>(<span class="str">"Result:"</span>, <span class="fn">pow</span>(a, b))
+
+<span class="kw">elif</span> choice == <span class="str">"4"</span>:
+    a = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Enter dividend: "</span>))
+    b = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Enter divisor: "</span>))
+    q, r = <span class="fn">divmod</span>(a, b)
+    <span class="fn">print</span>(<span class="str">"Quotient:"</span>, q)
+    <span class="fn">print</span>(<span class="str">"Remainder:"</span>, r)
+
+<span class="kw">elif</span> choice == <span class="str">"5"</span>:
+    a = <span class="fn">float</span>(<span class="fn">input</span>(<span class="str">"Enter a number: "</span>))
+    <span class="fn">print</span>(<span class="str">"Rounded:"</span>, <span class="fn">round</span>(a))
+
+<span class="kw">elif</span> choice == <span class="str">"6"</span>:
+    a = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Enter first number: "</span>))
+    b = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Enter second number: "</span>))
+    <span class="fn">print</span>(<span class="str">"Max:"</span>, <span class="fn">max</span>(a, b))
+    <span class="fn">print</span>(<span class="str">"Min:"</span>, <span class="fn">min</span>(a, b))
+
+<span class="kw">elif</span> choice == <span class="str">"7"</span>:
+    numbers = <span class="fn">input</span>(<span class="str">"Enter numbers separated by space: "</span>).split()
+    nums = [<span class="fn">int</span>(n) <span class="kw">for</span> n <span class="kw">in</span> numbers]
+    <span class="fn">print</span>(<span class="str">"Sum:"</span>, <span class="fn">sum</span>(nums))
+
+<span class="kw">elif</span> choice == <span class="str">"8"</span>:
+    num = <span class="fn">float</span>(<span class="fn">input</span>(<span class="str">"Enter a number: "</span>))
+    <span class="fn">print</span>(<span class="str">"Integer value ="</span>, <span class="fn">int</span>(num))
+
+<span class="kw">elif</span> choice == <span class="str">"9"</span>:
+    num = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Enter a number: "</span>))
+    <span class="fn">print</span>(<span class="str">"Float value ="</span>, <span class="fn">float</span>(num))
+
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"Invalid choice"</span>)</pre>
+    </div>
+    <div class="code-output-data" hidden>Simple Calculator
+1- Addition
+...
+Select an option (1-9): 1
+Enter first number: 5
+Enter second number: 3
+Result: 8</div>
+  </div>
+
+  <!-- ═══════════════ SECTION 26 — SORTED ═══════════════ -->
+  <h2 class="section-title reveal" id="sorted-function">
+    <span class="num">26</span>
+    <span class="txt">تابع مرتب‌سازی (sorted)</span>
+  </h2>
+
+  <div class="card reveal">
+    <p>تابع <code class="inline">sorted</code> این تابع برای مرتب‌سازی رشته، مجموعه، tuple و دیکشنری مورد استفاده قرار می‌گیرد و نتیجه را در قالب یک لیست جدید برمی‌گرداند.</p>
+    <p><strong>ساختار کلی:</strong> <code class="inline">sorted(iterable, reverse=False)</code></p>
+    <p>عبارت <code class="inline">reverse=True</code> باعث نزولی شدن مرتب‌سازی می‌شود.</p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">sorted_demo.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="fn">data</span> = <span class="str">"hellu de823)P1}"</span>
+<span class="fn">print</span>(<span class="fn">sorted</span>(data))</pre>
+    </div>
+    <div class="code-output-data" hidden>[' ', ' ', '1', '2', '3', '8', 'P', ')', 'd', 'e', 'e', 'h', 'l', 'l', 'u', '}']</div>
+  </div>
+
+  <!-- ═══════════════ SECTION 27 — MODULES INTRO ═══════════════ -->
+  <h2 class="section-title reveal" id="modules">
+    <span class="num">27</span>
+    <span class="txt">ماژول‌ها (Module)</span>
+  </h2>
+
+  <div class="guide reveal">
+    <div class="guide-avatar">🤖</div>
+    <div class="guide-bubble">
+      تا حالا کدهای ما توی یک فایل بودن. اما برای پروژه‌های بزرگ، کدها رو به فایل‌های کوچیک‌تر تقسیم می‌کنیم. به این فایل‌ها <strong>ماژول</strong> می‌گیم!
+    </div>
+  </div>
+
+
+    <!-- IMAGE: MODULES -->
+  <div class="figure-card reveal">
+    <div class="fig-head">
+      <span class="fig-num">۰۵</span>
+      <span class="fig-title">ماژول؛ جعبه‌ابزار برنامه‌نویسی</span>
+    </div>
+    <div class="fig-body">
+      <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ماژول و ابزارها">
+        <rect width="600" height="220" fill="var(--bg-2)" rx="10"/>
+        
+        <!-- Toolbox -->
+        <rect x="150" y="80" width="300" height="100" rx="10" fill="var(--surface-solid)" stroke="var(--brand-1)" stroke-width="3"/>
+        <rect x="150" y="60" width="300" height="30" rx="10" fill="var(--brand-1)" />
+        <rect x="250" y="50" width="100" height="20" rx="5" fill="var(--surface-solid)" stroke="var(--brand-1)" stroke-width="3"/>
+        
+        <text x="300" y="80" font-family="JetBrains Mono, monospace" font-weight="900" font-size="16" fill="#fff" text-anchor="middle">module.py</text>
+
+        <!-- Tools inside -->
+        <rect x="180" y="110" width="60" height="40" rx="6" fill="#3b82f6" opacity="0.8"/>
+        <text x="210" y="136" font-family="JetBrains Mono, monospace" font-size="12" fill="#fff" text-anchor="middle">func1</text>
+        
+        <rect x="270" y="110" width="60" height="40" rx="6" fill="#10b981" opacity="0.8"/>
+        <text x="300" y="136" font-family="JetBrains Mono, monospace" font-size="12" fill="#fff" text-anchor="middle">func2</text>
+        
+        <rect x="360" y="110" width="60" height="40" rx="6" fill="#f59e0b" opacity="0.8"/>
+        <text x="390" y="136" font-family="JetBrains Mono, monospace" font-size="12" fill="#fff" text-anchor="middle">class</text>
+
+        <!-- Arrow pointing from outside -->
+        <path d="M 70 130 L 130 130" stroke="var(--text-3)" stroke-width="3" marker-end="url(#arrowhead3)"/>
+        <defs>
+          <marker id="arrowhead3" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="var(--text-3)" />
+          </marker>
+        </defs>
+        
+        <text x="50" y="110" font-family="Vazirmatn, sans-serif" font-weight="700" font-size="14" fill="var(--text-2)" text-anchor="middle">main.py</text>
+        <text x="50" y="160" font-family="JetBrains Mono, monospace" font-size="12" fill="var(--brand-1)" text-anchor="middle">import</text>
+      </svg>
+    </div>
+    <div class="fig-caption">
+      <strong>شکل ۵:</strong> ماژول‌ها مانند جعبه‌ابزارهایی پر از توابع و کلاس‌های آماده هستند که با دستور <code>import</code> از آن‌ها استفاده می‌کنیم.
+    </div>
+  </div>
+
+  <div class="card reveal">
+    <p>ماژول یک فایل است که می‌تواند شامل چندین تابع، متغیر و کلاس باشد و برای سازمان‌دهی برنامه‌های بزرگ استفاده می‌شود. با استفاده از ماژول می‌توانید از کدهای آماده دیگران استفاده کنید و برنامه خود را کوتاه‌تر و منظم‌تر کنید.</p>
+    <p><strong>انواع ماژول در پایتون:</strong></p>
+    <ul>
+      <li><strong>ماژول استاندارد (Standard):</strong> ماژول‌هایی در پایتون وجود دارند که برنامه‌نویس فقط آن‌ها را در برنامه خودش وارد می‌کند. مانند <code class="inline">math</code>, <code class="inline">random</code>, <code class="inline">time</code>.</li>
+    </ul>
+  </div>
+
+  <!-- ═══════════════ SECTION 28 — IMPORT METHODS ═══════════════ -->
+  <h2 class="section-title reveal" id="import-methods">
+    <span class="num">28</span>
+    <span class="txt">روش‌های وارد کردن ماژول</span>
+  </h2>
+
+  <div class="subsection reveal"><span class="ic">📥</span> روش اول: import</div>
+  <div class="card reveal">
+    <p>در این روش، ماژول کامل را وارد می‌کنیم و از طریق نام ماژول به توابع آن دسترسی پیدا می‌کنیم.</p>
+  </div>
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">import_math.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="kw">import</span> math
+<span class="fn">print</span>(math.<span class="fn">sqrt</span>(<span class="num">16</span>))</pre>
+    </div>
+    <div class="code-output-data" hidden>4.0</div>
+  </div>
+
+  <div class="subsection reveal"><span class="ic">🎲</span> ماژول random</div>
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">import_random.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="kw">import</span> random
+<span class="fn">messages</span> = [<span class="str">"Keep going"</span>, <span class="str">"You can do it"</span>, <span class="str">"Never give up"</span>]
+<span class="fn">print</span>(random.<span class="fn">choice</span>(messages))</pre>
+    </div>
+    <div class="code-output-data" hidden>Keep going</div>
+  </div>
+
+  <div class="subsection reveal"><span class="ic">📤</span> روش دوم: from ... import ...</div>
+  <div class="card reveal">
+    <p>در این روش، فقط توابع یا متغیرهای موردنیاز را از یک ماژول وارد می‌کنیم. این روش کدها را کوتاه‌تر می‌کند.</p>
+  </div>
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">from_import.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="kw">from</span> math <span class="kw">import</span> sqrt, pow
+<span class="fn">print</span>(<span class="fn">sqrt</span>(<span class="num">25</span>))
+<span class="fn">print</span>(<span class="fn">pow</span>(<span class="num">2</span>, <span class="num">3</span>))</pre>
+    </div>
+    <div class="code-output-data" hidden>5.0
+8</div>
+  </div>
+
+  <!-- ═══════════════ SECTION 29 — COMMON MODULES ═══════════════ -->
+  <h2 class="section-title reveal" id="common-modules">
+    <span class="num">29</span>
+    <span class="txt">ماژول‌های پرکاربرد پایتون</span>
+  </h2>
+
+  <div class="card reveal">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ماژول</th>
+            <th>کاربرد</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td data-label="ماژول"><code class="inline">math</code></td><td data-label="کاربرد">توابع ریاضی</td></tr>
+          <tr><td data-label="ماژول"><code class="inline">random</code></td><td data-label="کاربرد">تولید اعداد تصادفی</td></tr>
+          <tr><td data-label="ماژول"><code class="inline">turtle</code></td><td data-label="کاربرد">رسم شکل و گرافیک</td></tr>
+          <tr><td data-label="ماژول"><code class="inline">datetime</code></td><td data-label="کاربرد">تاریخ و زمان</td></tr>
+          <tr><td data-label="ماژول"><code class="inline">os</code></td><td data-label="کاربرد">کار با سیستم‌عامل</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="subsection reveal"><span class="ic">⏰</span> کار با ماژول datetime</div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">datetime_now.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="kw">import</span> datetime
+now = datetime.datetime.<span class="fn">now</span>()
+<span class="fn">print</span>(<span class="str">"Current date and time:"</span>, now)</pre>
+    </div>
+    <div class="code-output-data" hidden>Current date and time: 2024-05-20 11:02:38.757570</div>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">datetime_hour.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="kw">from</span> datetime <span class="kw">import</span> datetime
+now = datetime.<span class="fn">now</span>()
+<span class="fn">print</span>(<span class="str">"Hour:"</span>, now.hour)</pre>
+    </div>
+    <div class="code-output-data" hidden>Hour: 11</div>
+  </div>
+
+  <!-- ═══════════════ SECTION 30 — LOCAL MODULES ═══════════════ -->
+  <h2 class="section-title reveal" id="local-modules">
+    <span class="num">30</span>
+    <span class="txt">ماژول محلی (Local)</span>
+  </h2>
+
+  <div class="guide reveal">
+    <div class="guide-avatar">🤖</div>
+    <div class="guide-bubble">
+      تا اینجا از ماژول‌های آماده پایتون استفاده کردیم. اما چطور میشه <strong>ماژول خودمون</strong> رو بسازیم؟ 
+      خیلی ساده است! کافیه یه فایل پایتون با پسوند <code class="inline">.py</code> بسازیم و توابعی که می‌خوایم رو توش بنویسیم.
+    </div>
+  </div>
+
+  <div class="card reveal">
+    <p>ماژول‌های هزینه‌شده توسط برنامه‌نویس نوشته شده است و در برنامه <code class="inline">import</code> می‌شوند. اگر یک فایل پایتون با پسوند <code class="inline">.py</code> ایجاد کنید، می‌توانید توابع و متغیرها را در آن قرار داده و سپس آن‌ها را در برنامه اصلی خود <code class="inline">import</code> کنید.</p>
+  </div>
+
+  <div class="subsection reveal"><span class="ic">📁</span> مثال ۱: ساخت و استفاده از ماژول ساده</div>
+  
+  <div class="card reveal">
+    <p>ابتدا فایلی به نام <code class="inline">my_module.py</code> ایجاد کنید و کدهای زیر را در آن بنویسید:</p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">my_module.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="kw">def</span> <span class="fn">greet</span>(name):
+    <span class="kw">return</span> <span class="str">"Hello, "</span> + name + <span class="str">"!"</span></pre>
+    </div>
+  </div>
+
+  <div class="card reveal">
+    <p>سپس در برنامه اصلی <code class="inline">main.py</code> کدهای زیر را بنویسید:</p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">main.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="cm"># --- my_module.py ---</span>
+<span class="kw">def</span> <span class="fn">greet</span>(name):
+    <span class="kw">return</span> <span class="str">"Hello, "</span> + name + <span class="str">"!"</span>
+
+<span class="cm"># --- main.py ---</span>
+<span class="kw">import</span> my_module
+<span class="fn">message</span> = my_module.<span class="fn">greet</span>(<span class="str">"Ali"</span>)
+<span class="fn">print</span>(message)</pre>
+    </div>
+    <div class="code-output-data" hidden>Hello, Ali!</div>
+  </div>
+
+  <!-- ═══════════════ SECTION 31 — THIRD-PARTY MODULES ═══════════════ -->
+  <h2 class="section-title reveal" id="third-party-modules">
+    <span class="num">31</span>
+    <span class="txt">ماژول‌های شخص ثالث (Third-party)</span>
+  </h2>
+
+  <div class="card reveal">
+    <p>این ماژول‌ها توسط توسعه‌دهندگان دیگر نوشته شده‌اند و برای استفاده از آن‌ها باید با استفاده از دستور <code class="inline">pip install</code> نصب شوند. سپس می‌توانید آن‌ها را در برنامه خود <code class="inline">import</code> کنید.</p>
+    <p>مثال‌هایی از این ماژول‌ها عبارتند از: <strong>Flask</strong> (برای ساخت وب)، <strong>PyGame</strong> (برای ساخت بازی) و <strong>Django</strong> (فریم‌ورک وب).</p>
+  </div>
+
+  <!-- ═══════════════ SECTION 32 — FUNCTION VS METHOD ═══════════════ -->
+  <h2 class="section-title reveal" id="function-vs-method">
+    <span class="num">32</span>
+    <span class="txt">تفاوت تابع و متد</span>
+  </h2>
+
+  <div class="guide reveal" data-mood="think">
+    <div class="guide-avatar">🤖</div>
+    <div class="guide-bubble">
+      ممکنه برات سوال شده باشه که چرا گاهی از <code class="inline">len(text)</code> استفاده می‌کنیم و گاهی از <code class="inline">text.upper()</code>؟ 
+      این دو چه فرقی با هم دارن؟ توی این بخش، این تفاوت رو کامل یاد می‌گیری!
+    </div>
+  </div>
+
+  <div class="card reveal">
+    <p>در مثال قبل، از دستوراتی مانند <code class="inline">split()</code>، <code class="inline">upper()</code> و <code class="inline">append()</code> استفاده کردیم، بدون آنکه تعریف‌شان را بدانیم. این نوع توابع، <strong>متد (Method)</strong> نامیده می‌شوند.</p>
+  </div>
+
+  <div class="subsection reveal"><span class="ic">🧩</span> تابع (Function)</div>
+  <div class="card reveal">
+    <p>مجموعه‌ای از دستورات است که برای انجام کاری مشخص تعریف می‌شود و به صورت مستقل با استفاده از نام خود فراخوانی می‌شود.</p>
+    <p><strong>مثال:</strong> شمارش تعداد کاراکترها: <code class="inline">len(users)</code></p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">function_example.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="fn">users</span> = [<span class="str">"Arash"</span>, <span class="str">"Sara"</span>, <span class="str">"saba"</span>]
+<span class="fn">print</span>(<span class="fn">len</span>(users))</pre>
+    </div>
+    <div class="code-output-data" hidden>3</div>
+  </div>
+
+  <div class="subsection reveal"><span class="ic">🔧</span> متد (Method)</div>
+  <div class="card reveal">
+    <p>نوعی تابع است که به یک کلاس یا شیء مشخص تعلق دارد و برای انجام عملیات روی داده‌های همان شیء استفاده می‌شود. متدها با استفاده از نقطه (.) فراخوانی می‌شوند.</p>
+    <p><strong>مثال:</strong> متدهای <code class="inline">upper</code> و <code class="inline">lower</code> که حروف را به بزرگ یا کوچک تبدیل می‌کنند.</p>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">method_example.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="fn">your_text</span> = <span class="fn">input</span>(<span class="str">"enter you text"</span>)
+<span class="fn">print</span>(your_text.<span class="fn">upper</span>())
+<span class="fn">print</span>(your_text.<span class="fn">lower</span>())</pre>
+    </div>
+    <div class="code-output-data" hidden>enter you text: It is a test
+IT IS A TEST
+it is a test</div>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">method_vs_function.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="fn">text</span> = <span class="str">"Python Programming"</span>
+<span class="fn">words</span> = text.<span class="fn">split</span>()  <span class="cm"># متد</span>
+
+<span class="fn">numbers</span> = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]
+numbers.<span class="fn">append</span>(<span class="num">4</span>)      <span class="cm"># متد</span>
+
+<span class="fn">length</span> = <span class="fn">len</span>(text)      <span class="cm"># تابع</span>
+
+<span class="fn">print</span>(words)
+<span class="fn">print</span>(numbers)
+<span class="fn">print</span>(length)</pre>
+    </div>
+    <div class="code-output-data" hidden>['Python', 'Programming']
+[1, 2, 3, 4]
+18</div>
+  </div>
+
+  <div class="try-box reveal">
+    <strong>فعالیت:</strong> تابعی بنویسید که یک رشته را از ورودی دریافت کند و تعداد حروف بزرگ، کوچک و اعداد آن را نمایش دهد.
+  </div>
+
+
+  <!-- ═══════════════ SECTION 33 — DEBUG CHALLENGE ═══════════════ -->
+  <h2 class="section-title reveal" id="debug-challenge">
+    <span class="num">33</span>
+    <span class="txt">چالش پیدا کردن باگ (Debugging)</span>
+  </h2>
+
+  <div class="guide reveal" data-mood="warn">
+    <div class="guide-avatar">🤖</div>
+    <div class="guide-bubble">
+      برنامه‌نویس‌های حرفه‌ای بیشتر وقتشون رو صرف پیدا کردن باگ (خطا) می‌کنن تا نوشتن کد! 
+      توی این چالش، من یک کد رو با ۳ خطا برات نوشتم. دکمه اجرا رو بزن، خطاها رو ببین و توی ادیتور اصلاحشون کن.
+    </div>
+  </div>
+
+  <div class="card reveal">
+    <p>کد زیر قرار است مساحت یک مستطیل را محاسبه کند و به کاربر نشان دهد. اما ۳ باگ در آن وجود دارد که باعث می‌شود برنامه کرش کند. آیا می‌توانید آن‌ها را پیدا و اصلاح کنید؟</p>
+    <ul>
+      <li><strong>راهنمایی ۱:</strong> ورودی کاربر چه نوع داده‌ای است؟</li>
+      <li><strong>راهنمایی ۲:</strong> آیا می‌توان یک رشته (String) و یک عدد (Integer) را با هم جمع کرد؟</li>
+      <li><strong>راهنمایی ۳:</strong> آیا متغیرها به درستی به تابع پاس داده شده‌اند؟</li>
+    </ul>
+  </div>
+
+  <div class="code-block reveal" data-lang="Python" id="debug-code">
+    <div class="code-header">
+      <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <span class="filename">fix_me.py</span>
+      <span class="lang-badge">Python</span>
+      <div class="code-actions">
+        <button class="code-btn run-btn" onclick="runCode(this)"><span class="btn-icon">▶</span><span class="btn-text">اجرا</span></button>
+        <button class="code-btn reset-btn" onclick="resetCode(this)" hidden><span class="btn-icon">↺</span><span class="btn-text">بازنشانی</span></button>
+        <button class="code-btn copy-btn" onclick="copyCode(this)"><span class="btn-icon">📋</span><span class="btn-text">کپی</span></button>
+      </div>
+    </div>
+    <div class="code-body">
+      <pre><span class="cm"># ۳ خطا در این کد وجود دارد! آن‌ها را پیدا و اصلاح کنید.</span>
+
+<span class="kw">def</span> <span class="fn">calculate_area</span>(width, height):
+    <span class="fn">area</span> = width * height
+    <span class="cm"># باگ ۱: تلاش برای چاپ یک عدد با استفاده از الحاق رشته</span>
+    <span class="fn">print</span>(<span class="str">"Area is: "</span> + area)
+
+<span class="cm"># باگ ۲: input همیشه رشته برمی‌گرداند</span>
+<span class="fn">w</span> = <span class="fn">input</span>(<span class="str">"Enter width: "</span>)
+<span class="fn">h</span> = <span class="num">5</span>
+
+<span class="cm"># باگ ۳: احتمالا نام متغیرها اشتباه پاس داده شده؟</span>
+<span class="fn">calculate_area</span>(w, width)</pre>
+    </div>
+    <div class="code-output-data" hidden>Enter width: 10
+Traceback (most recent call last):
+  File "fix_me.py", line 10, in <module>
+    calculate_area(w, width)
+NameError: name 'width' is not defined</div>
+  </div>
+
+  <div class="try-box reveal" style="background:rgba(16,185,129,.1); border-color:rgba(16,185,129,.4)">
+    <strong>راه‌حل نهایی:</strong> اگر موفق نشدی، این کد اصلاح‌شده را بررسی کن:<br><br>
+    <code>w = int(input("Enter width: "))</code><br>
+    <code>h = 5</code><br>
+    <code>print("Area is: " + str(area))</code><br>
+    <code>calculate_area(w, h)</code>
+  </div>
+
+
+
+
+    <!-- ═══════════════ SECTION 33 — CHEAT SHEET ═══════════════ -->
+  <h2 class="section-title reveal" id="cheat-sheet">
+    <span class="num">۳۳</span>
+    <span class="txt">تقلب‌نامه مرور سریع</span>
+  </h2>
+
+  <div class="guide reveal" data-mood="happy">
+    <div class="guide-avatar">🤖</div>
+    <div class="guide-bubble">
+      شب امتحان یا وقتی می‌خوای یه مرور سریع داشته باشی، این بخش به دادت می‌رسه! 
+      تمام نکات کلیدی این پودمان رو توی این کارت‌ها جمع کردم. یه نگاه بنداز و همه چیز رو یادت بیاد. 🚀
+    </div>
+  </div>
+
+  <div class="cheat-grid reveal">
+    <!-- Card 1: Sets -->
+    <div class="cheat-card">
+      <h3 class="cheat-title"><span class="ic">🎒</span> مجموعه‌ها (Sets)</h3>
+      <div class="cheat-item"><code class="inline">my_set = {1, 2, 3}</code><span>ساخت مجموعه</span></div>
+      <div class="cheat-item"><code class="inline">my_set.add(4)</code><span>اضافه کردن</span></div>
+      <div class="cheat-item"><code class="inline">my_set.remove(1)</code><span>حذف کردن</span></div>
+      <div class="cheat-item"><code class="inline">if 2 in my_set:</code><span>بررسی وجود</span></div>
+      <div class="cheat-item"><code class="inline">A | B</code><span>اجتماع</span></div>
+      <div class="cheat-item"><code class="inline">A & B</code><span>اشتراک</span></div>
+    </div>
+
+    <!-- Card 2: Dictionaries -->
+    <div class="cheat-card">
+      <h3 class="cheat-title"><span class="ic">📖</span> دیکشنری‌ها</h3>
+      <div class="cheat-item"><code class="inline">d = {"name": "Ali"}</code><span>ساخت دیکشنری</span></div>
+      <div class="cheat-item"><code class="inline">d["name"]</code><span>دسترسی به مقدار</span></div>
+      <div class="cheat-item"><code class="inline">d.get("city", "Unknown")</code><span>دسترسی امن</span></div>
+      <div class="cheat-item"><code class="inline">d.items()</code><span>پیمایش کلید و مقدار</span></div>
+      <div class="cheat-item"><code class="inline">del d["name"]</code><span>حذف کلید</span></div>
+      <div class="cheat-item"><code class="inline">d.pop("name")</code><span>حذف و برگرداندن</span></div>
+    </div>
+
+    <!-- Card 3: Tuples -->
+    <div class="cheat-card">
+      <h3 class="cheat-title"><span class="ic">📦</span> تاپل‌ها (Tuples)</h3>
+      <div class="cheat-item"><code class="inline">t = (1, 2, 3)</code><span>ساخت تاپل</span></div>
+      <div class="cheat-item"><code class="inline">t[0]</code><span>دسترسی با اندیس</span></div>
+      <div class="cheat-item"><code class="inline">len(t)</code><span>تعداد عناصر</span></div>
+      <div class="cheat-item" style="opacity:0.7; border-color:#f43f5e;"><code class="inline">t[0] = 5</code><span>تغییر ممنوع (خطا!)</span></div>
+    </div>
+
+    <!-- Card 4: Functions -->
+    <div class="cheat-card">
+      <h3 class="cheat-title"><span class="ic">⚙️</span> توابع (Functions)</h3>
+      <div class="cheat-item"><code class="inline">def my_func():</code><span>تعریف تابع</span></div>
+      <div class="cheat-item"><code class="inline">return value</code><span>بازگرداندن مقدار</span></div>
+      <div class="cheat-item"><code class="inline">def f(x, y=10):</code><span>مقدار پیش‌فرض</span></div>
+      <div class="cheat-item"><code class="inline">def f(*args, **kwargs):</code><span>آرگومان نامحدود</span></div>
+      <div class="cheat-item"><code class="inline">f(x=1, y=2)</code><span>آرگومان کلیدی</span></div>
+    </div>
+
+    <!-- Card 5: Modules -->
+    <div class="cheat-card">
+      <h3 class="cheat-title"><span class="ic">📁</span> ماژول‌ها</h3>
+      <div class="cheat-item"><code class="inline">import math</code><span>وارد کردن کل ماژول</span></div>
+      <div class="cheat-item"><code class="inline">from math import sqrt</code><span>وارد کردن یک تابع</span></div>
+      <div class="cheat-item"><code class="inline">import random</code><span>اعداد تصادفی</span></div>
+      <div class="cheat-item"><code class="inline">import my_module</code><span>ماژول محلی</span></div>
+    </div>
+
+    <!-- Card 6: Built-in & Misc -->
+    <div class="cheat-card">
+      <h3 class="cheat-title"><span class="ic">🛠️</span> توابع آماده و متفرقه</h3>
+      <div class="cheat-item"><code class="inline">abs(-5)</code><span>قدر مطلق</span></div>
+      <div class="cheat-item"><code class="inline">round(3.6)</code><span>گرد کردن</span></div>
+      <div class="cheat-item"><code class="inline">max(1, 5, 3)</code><span>بزرگترین</span></div>
+      <div class="cheat-item"><code class="inline">sum([1, 2, 3])</code><span>جمع</span></div>
+      <div class="cheat-item"><code class="inline">sorted(list)</code><span>مرتب‌سازی</span></div>
+    </div>
+  </div>
+
+
+
+  <!-- ═══════════════ FINAL CLOSING ═══════════════ -->
+  <div class="guide reveal guide-final" data-mood="happy">
+    <div class="guide-avatar">🤖</div>
+    <div class="guide-bubble">
+      تبریک! تو حالا با <strong>توابع</strong>، <strong>ماژول‌ها</strong> و <strong>ساختارهای داده پیشرفته</strong> آشنا شدی. 
+      این یه قدم بزرگ توی مسیر برنامه‌نویسیته! 🏆
+    </div>
+  </div>
+
+  <div class="final-closing reveal">
+    <span class="big-icon">🏆</span>
+    <h2>واحد یادگیری دوم به پایان رسید!</h2>
+    <p>تبریک می‌گویم! شما با موفقیت تمام مفاهیم واحد یادگیری دوم را یاد گرفتید — 
+    از مجموعه‌ها و دیکشنری‌ها گرفته تا تاپل‌ها، توابع و ماژول‌ها.
+    حالا می‌توانید برنامه‌های بزرگ‌تر و حرفه‌ای‌تری بنویسید!</p>
+    <p style="font-weight:800;margin-top:20px">
+      🚀 در پودمان بعدی:  توسعه وب با HTML CSS
+    </p>
+    <div class="emoji-row">🐍 ✨ 🎯 🎉 🚀</div>
+  </div>
+
+  <footer class="footer reveal">
+    <div class="teacher">✍️ مدرس: پوریا جان‌پرور</div>
+    <p>هنرستان‌های استعدادهای درخشان و نمونه امام خمینی</p>
+    <p style="margin-top:6px;font-size:12px">
+      پودمان دوم — برنامه‌نویسی پایتون ۳.۱۴ | ابر جزوه آموزشی
+    </p>
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ═══════════════════════════════════════════════════════════
+     🛡️  SAFE STORAGE
+     ═══════════════════════════════════════════════════════════ */
+  const safeStorage = {
+    get: function(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
+    set: function(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+  };
+
+  /* ═══════════════════════════════════════════════════════════
+     🚀  RUN / COPY / CLOSE
+     ═══════════════════════════════════════════════════════════ */
+  window.closeTerminal = function(btn){
+    try{
+      const terminal = btn.closest('.code-terminal');
+      if(!terminal) return;
+      const block = terminal.closest('.code-block');
+      if(activeRun && activeRun.block === block) activeRun.cancel();
+      terminal.style.animation = 'slideDown .25s var(--ease) reverse';
+      setTimeout(function(){ terminal.remove(); }, 250);
+    }catch(e){}
+  };
+
+  /* ═══════════════════════════════════════════════════════════
+     🐍  PYTHON RUNTIME (Robust Version)
+     ═══════════════════════════════════════════════════════════ */
+  const PYODIDE_URL = 'https://cdn.jsdelivr.net/pyodide/v0.27.7/full/';
+  const TERMINAL_STYLE = 'shell';
+  const MAX_OUTPUT_LINES = 2000;
+
+  const RUNNER_PY = String.raw`import ast, sys, builtins, inspect, linecache, traceback
+import _term
+
+class _OutputLimit(BaseException):
+    pass
+
+class _Stream:
+    encoding = 'utf-8'
+    def __init__(self, kind):
+        self.kind = kind
+        self.lines = 0
+
+    def write(self, s):
+        s = str(s)
+        if s and not _term.write(s, self.kind):
+            raise _OutputLimit()
+        self.lines += s.count('\n')
+        if self.lines > 2000:
+            raise _OutputLimit()
+        return len(s)
+
+    def flush(self): pass
+    def isatty(self): return True
+
+_OUT = _Stream('stdout')
+_ERR = _Stream('stderr')
+
+async def _async_input(prompt=''):
+    _OUT.write(str(prompt))
+    try:
+        value = await _term.readline()
+    except Exception:
+        raise KeyboardInterrupt from None
+    return str(value)
+
+def _sync_input(prompt=''):
+    from js import prompt as _js_prompt
+    value = _js_prompt("") 
+    if value is None:
+        raise KeyboardInterrupt
+    _OUT.write(str(prompt) + str(value) + '\n')
+    return str(value)
+
+def _plain_functions(tree):
+    found = {}
+    def visit(node, in_class):
+        for child in ast.iter_child_nodes(node):
+            if isinstance(child, ast.ClassDef):
+                visit(child, True)
+            elif isinstance(child, ast.FunctionDef):
+                if not in_class:
+                    found.setdefault(child.name, []).append(child)
+                visit(child, False)
+            else:
+                visit(child, in_class)
+    visit(tree, False)
+    return found
+
+def _called_names(node):
+    return {n.func.id for n in ast.walk(node)
+            if isinstance(n, ast.Call) and isinstance(n.func, ast.Name)}
+
+def _make_async(tree):
+    funcs = _plain_functions(tree)
+    names = {'input'}
+    changed = True
+    while changed:
+        changed = False
+        for name, nodes in funcs.items():
+            if name not in names and any(_called_names(n) & names for n in nodes):
+                names.add(name)
+                changed = True
+    targets = {id(n) for name in names for n in funcs.get(name, [])}
+
+    class _T(ast.NodeTransformer):
+        def visit_FunctionDef(self, node):
+            self.generic_visit(node)
+            if id(node) in targets:
+                new = ast.AsyncFunctionDef(**{f: getattr(node, f, None) for f in node._fields})
+                return ast.copy_location(new, node)
+            return node
+        def visit_Call(self, node):
+            self.generic_visit(node)
+            if isinstance(node.func, ast.Name) and node.func.id in names:
+                return ast.copy_location(ast.Await(value=node), node)
+            return node
+
+    tree = _T().visit(tree)
+    return ast.fix_missing_locations(tree)
+
+def _report(exc, filename):
+    frames = [f for f in traceback.extract_tb(exc.__traceback__) if f.filename == filename]
+    text = ''
+    if frames:
+        text += 'Traceback (most recent call last):\n' + ''.join(traceback.format_list(frames))
+    text += ''.join(traceback.format_exception_only(type(exc), exc))
+    _term.write(text, 'stderr')
+
+async def _run(src, filename):
+    src = src.replace('\r\n', '\n').replace('\r', '\n')
+    if not src.endswith('\n'): src += '\n'
+    linecache.cache[filename] = (len(src), None, src.splitlines(True), filename)
+    saved = sys.stdout, sys.stderr
+    sys.stdout, sys.stderr = _OUT, _ERR
+    try:
+        try:
+            tree = ast.parse(src, filename)
+        except SyntaxError as e:
+            _term.write(''.join(traceback.format_exception_only(type(e), e)), 'stderr')
+            return
+        ns = {'__name__': '__main__', '__file__': filename, '__builtins__': builtins}
+        try:
+            code = compile(_make_async(tree), filename, 'exec', flags=ast.PyCF_ALLOW_TOP_LEVEL_AWAIT)
+            ns['input'] = _async_input
+        except SyntaxError:
+            code = compile(ast.parse(src, filename), filename, 'exec')
+            ns['input'] = _sync_input
+        try:
+            result = eval(code, ns)
+            if inspect.iscoroutine(result):
+                await result
+        except SystemExit as e:
+            if e.code is not None and not isinstance(e.code, int):
+                _term.write(str(e.code) + '\n', 'stderr')
+        except _OutputLimit:
+            _term.notice('limit')
+        except KeyboardInterrupt:
+            _term.write('\nKeyboardInterrupt\n', 'stderr')
+        except BaseException as e:
+            _report(e, filename)
+    finally:
+        sys.stdout, sys.stderr = saved
+`;
+
+  let activeRun = null;
+  let pyPromise = null;
+  let pyLoaded = false;
+
+  function loadScript(src){
+    return new Promise(function(resolve, reject){
+      const s = document.createElement('script');
+      s.src = src;
+      s.onload = resolve;
+      s.onerror = function(){ reject(new Error('failed to load ' + src)); };
+      document.head.appendChild(s);
+    });
+  }
+
+  const termBridge = {
+    write: function(text, kind){ return activeRun ? activeRun.term.write(text, kind) : true; },
+    readline: function(){ return activeRun ? activeRun.term.readline() : Promise.reject(new Error('KeyboardInterrupt')); },
+    echo: function(text){
+      if(activeRun){ activeRun.term.write(text, 'stdin'); activeRun.term.write('\n', 'stdin'); }
+      return true;
+    },
+    notice: function(kind){
+      if(activeRun && kind === 'limit'){
+        activeRun.term.info('⛔ خروجی بیش از ' + MAX_OUTPUT_LINES + ' خط شد و اجرا متوقف شد (احتمالاً حلقه‌ی بی‌پایان).');
+      }
+      return true;
+    }
+  };
+
+  function getPython(){
+    if(!pyPromise){
+      pyPromise = (async function(){
+        if(typeof window.loadPyodide !== 'function') await loadScript(PYODIDE_URL + 'pyodide.js');
+        const py = await window.loadPyodide({ indexURL: PYODIDE_URL });
+        py.registerJsModule('_term', termBridge);
+        await py.runPythonAsync(RUNNER_PY);
+        pyLoaded = true;
+        return py;
+      })();
+      pyPromise.catch(function(){ pyPromise = null; });
+    }
+    return pyPromise;
+  }
+
+  // 🚀 PRE-LOADING PYODIDE
+  // Start loading the Python engine in the background immediately after DOM is ready.
+  // This ensures that by the time the user clicks "Run", the engine is ready.
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      getPython().then(function() {
+        console.log('✅ Pyodide pre-loaded successfully in background.');
+      }).catch(function(err) {
+        console.warn('⚠️ Pyodide background pre-load failed:', err);
+      });
+    }, 1500); // Delay 1.5s to not compete with page render/font loading
+  });
+
+  function createTerminal(block, filename){
+    const terminal = document.createElement('div');
+    terminal.className = 'code-terminal';
+    terminal.innerHTML =
+      '<div class="terminal-header">' +
+        '<span class="terminal-title"><span class="terminal-icon">⬤</span> ' +
+          (TERMINAL_STYLE === 'idle' ? 'IDLE Shell' : 'Terminal') + '</span>' +
+        '<button class="terminal-close" aria-label="بستن">✕</button>' +
+      '</div>' +
+      '<div class="terminal-body" role="log" aria-live="polite" dir="ltr"></div>';
+    block.appendChild(terminal);
+
+    const body = terminal.querySelector('.terminal-body');
+    let line = null;
+    let lineCount = 0;
+    let pending = null;
+    let loader = null;
+
+    function scroll(){ body.scrollTop = body.scrollHeight; }
+    function newLine(cls){
+      line = document.createElement('div');
+      line.className = 'terminal-line' + (cls ? ' ' + cls : '');
+      body.appendChild(line);
+      lineCount++;
+    }
+    function promptLine(sym, cmd, withCursor){
+      const el = document.createElement('div');
+      el.className = 'terminal-line prompt-line';
+      const s = document.createElement('span');
+      s.className = 'prompt-sym';
+      s.textContent = sym;
+      el.appendChild(s);
+      if(cmd){
+        const c = document.createElement('span');
+        c.className = 'cmd';
+        c.textContent = cmd;
+        el.appendChild(c);
+      }
+      if(withCursor){
+        const cur = document.createElement('span');
+        cur.className = 'terminal-cursor';
+        el.appendChild(cur);
+      }
+      body.appendChild(el);
+      line = null;
+    }
+
+    return {
+      el: terminal,
+      loading: function(text){
+        if(loader){ loader.remove(); loader = null; }
+        if(!text) return;
+        loader = document.createElement('div');
+        loader.className = 'terminal-loading';
+        loader.setAttribute('dir', 'rtl');
+        loader.innerHTML = '<span></span><div class="loading-dots"><span></span><span></span><span></span></div>';
+        loader.firstChild.textContent = text;
+        body.appendChild(loader);
+      },
+      start: function(){
+        if(TERMINAL_STYLE === 'idle'){
+          newLine('t-restart');
+          line.textContent = '= python ' + filename;
+          line = null;
+        } else {
+          promptLine('>', 'python ' + filename, false);
+        }
+      },
+      end: function(){
+        if(line && !line.childNodes.length){ line.remove(); line = null; }
+        promptLine(TERMINAL_STYLE === 'idle' ? '>>>' : '>', '', true);
+        body.lastChild.style.marginTop = '8px';
+        scroll();
+      },
+      info: function(text){
+        if(line && !line.childNodes.length){ line.remove(); }
+        newLine('t-info');
+        line.setAttribute('dir', 'rtl');
+        line.textContent = text;
+        line = null;
+        scroll();
+      },
+      write: function(text, kind){
+        if(kind === 'stdout' && lineCount > MAX_OUTPUT_LINES) return false;
+        const parts = String(text).split('\n');
+        for(let i = 0; i < parts.length; i++){
+          if(i > 0 || !line) newLine();
+          if(parts[i]){
+            const span = document.createElement('span');
+            span.className = 't-' + kind;
+            span.textContent = parts[i];
+            line.appendChild(span);
+          }
+        }
+        scroll();
+        return true;
+      },
+      readline: function(){
+        return new Promise(function(resolve, reject){
+          if(!line) newLine();
+          const input = document.createElement('input');
+          input.type = 'text';
+          input.className = 'terminal-input';
+          input.setAttribute('dir', 'auto');
+          input.setAttribute('autocomplete', 'off');
+          input.setAttribute('autocapitalize', 'off');
+          input.setAttribute('autocorrect', 'off');
+          input.setAttribute('spellcheck', 'false');
+          input.setAttribute('enterkeyhint', 'send');
+          input.setAttribute('aria-label', 'ورودی برنامه — بنویسید و Enter بزنید');
+          line.appendChild(input);
+
+          pending = function(){ pending = null; input.disabled = true; reject(new Error('KeyboardInterrupt')); };
+
+          input.addEventListener('keydown', function(e){
+            if(e.key !== 'Enter' || e.isComposing) return;
+            e.preventDefault();
+            const value = input.value;
+            const span = document.createElement('span');
+            span.className = 't-stdin';
+            span.textContent = value;
+            input.replaceWith(span);
+            line = null;
+            pending = null;
+            scroll();
+            resolve(value);
+          });
+
+          scroll();
+          try{ input.focus({ preventScroll: true }); }catch(e){ input.focus(); }
+          input.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        });
+      },
+      cancel: function(){ if(pending) pending(); }
+    };
+  }
+
+  function setRunning(block, btn, on){
+    block.classList.toggle('running', on);
+    if(!btn) return;
+    btn.classList.toggle('running', on);
+    const text = btn.querySelector('.btn-text');
+    const icon = btn.querySelector('.btn-icon');
+    if(text) text.textContent = on ? 'توقف' : 'اجرا';
+    if(icon) icon.textContent = on ? '■' : '▶';
+  }
+
+  function showSampleOutput(block, term){
+    term.info('⚠️ مفسر پایتون بارگذاری نشد؛ اتصال اینترنت را بررسی کنید و دوباره «اجرا» را بزنید.');
+    const data = block.querySelector('.code-output-data');
+    if(data && !block.classList.contains('edited')){
+      term.info('خروجی نمونه‌ی این برنامه:');
+      term.start();
+      term.write(data.textContent.replace(/\r/g, ''), block.dataset.outputType === 'error' ? 'stderr' : 'stdout');
+    }
+  }
+
+  window.runCode = async function(btn){
+    const block = btn && btn.closest('.code-block');
+    if(!block) return;
+
+    if(activeRun && activeRun.block === block){ activeRun.cancel(); return; }
+    if(activeRun){
+      const prev = activeRun;
+      prev.cancel();
+      await prev.done;
+      if(activeRun) return;
+    }
+
+    const pre = block.querySelector('pre');
+    const code = pre ? pre.innerText : '';
+    const nameEl = block.querySelector('.filename');
+    const filename = (nameEl && nameEl.textContent.trim()) || 'main.py';
+
+    const old = block.querySelector('.code-terminal');
+    if(old) old.remove();
+    const term = createTerminal(block, filename);
+
+    let finish;
+    const run = {
+      block: block,
+      term: term,
+      cancelled: false,
+      done: new Promise(function(r){ finish = r; }),
+      cancel: function(){ this.cancelled = true; term.cancel(); }
+    };
+    activeRun = run;
+    setRunning(block, btn, true);
+
+    try{
+      let py;
+      // Because we pre-loaded, this should resolve almost instantly
+      if(!pyLoaded) term.loading('در حال آماده‌سازی مفسر پایتون…');
+      try{
+        py = await getPython();
+      }catch(err){
+        console.error('pyodide load error:', err);
+        term.loading(null);
+        showSampleOutput(block, term);
+        return;
+      }
+      term.loading(null);
+      
+      if(run.cancelled){ term.el.remove(); return; }
+
+      term.start();
+      py.globals.set('_SRC', code);
+      py.globals.set('_FNAME', filename);
+      await py.runPythonAsync('await _run(_SRC, _FNAME)');
+    }catch(err){
+      console.error('runCode error:', err);
+      term.write(String(err && err.message || err) + '\n', 'stderr');
+    }finally{
+      term.end();
+      setRunning(block, btn, false);
+      if(activeRun === run) activeRun = null;
+      finish();
+    }
+  };
+
+  window.copyCode = function(btn){
+    try{
+      const block = btn.closest('.code-block');
+      if(!block) return;
+      const pre = block.querySelector('pre');
+      if(!pre) return;
+      const code = pre.innerText;
+
+      const onSuccess = function(){
+        const btnText = btn.querySelector('.btn-text');
+        const icon = btn.querySelector('.btn-icon');
+        const origText = btnText ? btnText.textContent : '';
+        const origIcon = icon ? icon.textContent : '';
+        if(btnText) btnText.textContent = 'کپی شد';
+        if(icon) icon.textContent = '✅';
+        btn.classList.add('copied');
+        setTimeout(function(){
+          if(btnText) btnText.textContent = origText;
+          if(icon) icon.textContent = origIcon;
+          btn.classList.remove('copied');
+        }, 1800);
+      };
+
+      const onFail = function(){
+        const btnText = btn.querySelector('.btn-text');
+        if(btnText){
+          btnText.textContent = 'خطا';
+          setTimeout(function(){ btnText.textContent = 'کپی'; }, 1500);
+        }
+      };
+
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(code).then(onSuccess).catch(function(){
+          try{
+            const ta = document.createElement('textarea');
+            ta.value = code; ta.style.position = 'fixed'; ta.style.opacity = '0';
+            document.body.appendChild(ta); ta.select();
+            document.execCommand('copy'); document.body.removeChild(ta);
+            onSuccess();
+          }catch(e){ onFail(); }
+        });
+      } else {
+        try{
+          const ta = document.createElement('textarea');
+          ta.value = code; ta.style.position = 'fixed'; ta.style.opacity = '0';
+          document.body.appendChild(ta); ta.select();
+          document.execCommand('copy'); document.body.removeChild(ta);
+          onSuccess();
+        }catch(e){ onFail(); }
+      }
+    }catch(err){ console.error('copyCode error:', err); }
+  };
+
+  document.addEventListener('click', function(e){
+    const t = e.target;
+    if(!t || !t.closest) return;
+
+    const runBtn = t.closest('.run-btn');
+    if(runBtn){ e.preventDefault(); e.stopPropagation(); window.runCode(runBtn); return; }
+
+    const copyBtn = t.closest('.copy-btn');
+    if(copyBtn){ e.preventDefault(); e.stopPropagation(); window.copyCode(copyBtn); return; }
+
+    const resetBtn = t.closest('.reset-btn');
+    if(resetBtn){ e.preventDefault(); e.stopPropagation(); window.resetCode(resetBtn); return; }
+
+    const closeBtn = t.closest('.terminal-close');
+    if(closeBtn){ e.preventDefault(); e.stopPropagation(); window.closeTerminal(closeBtn); return; }
+  }, true);
+
+  try{
+    const html = document.documentElement;
+    const toggleIcon = document.getElementById('toggleIcon');
+    const themeToggleBtn = document.getElementById('themeToggle');
+
+    function applyTheme(theme){
+      if(theme === 'dark'){
+        html.setAttribute('data-theme','dark');
+        if(toggleIcon) toggleIcon.textContent = '☀️';
+      } else {
+        html.removeAttribute('data-theme');
+        if(toggleIcon) toggleIcon.textContent = '🌙';
+      }
+    }
+
+    const saved = safeStorage.get('theme');
+    if(saved === 'dark' || saved === 'light'){ applyTheme(saved); }
+    else { applyTheme('light'); }
+
+    if(themeToggleBtn){
+      themeToggleBtn.addEventListener('click', function(){
+        const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        applyTheme(newTheme);
+        safeStorage.set('theme', newTheme);
+      });
+    }
+
+    document.addEventListener('keydown', function(e){
+      if((e.key === 't' || e.key === 'T') && 
+         !e.target.closest('input, textarea, [contenteditable]')){
+        if(themeToggleBtn) themeToggleBtn.click();
+      }
+    });
+  }catch(err){ console.error('theme error:', err); }
+
+  try{
+    const progressFill = document.getElementById('progressFill');
+    let ticking = false;
+
+    function onScrollFrame(){
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if(progressFill){ progressFill.style.width = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%'; }
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function(){
+      if(!ticking){ requestAnimationFrame(onScrollFrame); ticking = true; }
+    }, {passive:true});
+    onScrollFrame();
+
+    const topNavLinks = document.querySelectorAll('#topnav a');
+    const spyTargets = document.querySelectorAll('h2.section-title[id]');
+
+    function activateLink(id){
+      topNavLinks.forEach(function(l){
+        const match = (l.getAttribute('href') === '#' + id) || (l.getAttribute('data-section') === id);
+        l.classList.toggle('active', match);
+      });
+    }
+
+    if('IntersectionObserver' in window && spyTargets.length){
+      const visible = new Map();
+      const spy = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){ visible.set(entry.target.id, entry.target.getBoundingClientRect().top); }
+          else { visible.delete(entry.target.id); }
+        });
+        if(visible.size){
+          let bestId = null, bestTop = Infinity;
+          visible.forEach(function(top, id){ if(top < bestTop){ bestTop = top; bestId = id; } });
+          if(bestId) activateLink(bestId);
+        }
+      }, {threshold:[0, 0.15, 0.4], rootMargin:'-80px 0px -60% 0px'});
+      spyTargets.forEach(function(s){ spy.observe(s); });
+    }
+  }catch(err){ console.error('scroll error:', err); }
+
+  try{
+    document.querySelectorAll('.code-block').forEach(function(block){
+      if(block.querySelector('.line-gutter')) return;
+      const pre = block.querySelector('pre');
+      if(!pre) return;
+      const lineCount = pre.textContent.split('\n').length;
+      const gutter = document.createElement('div');
+      gutter.className = 'line-gutter';
+      gutter.setAttribute('aria-hidden', 'true');
+      for(let i = 1; i <= lineCount; i++){
+        const span = document.createElement('span');
+        span.textContent = i;
+        gutter.appendChild(span);
+      }
+      pre.parentNode.insertBefore(gutter, pre);
+    });
+  }catch(err){ console.error('gutter error:', err); }
+
+  try{
+    function scrollToTarget(target){
+      if(!target) return;
+      const pos = target.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({top:pos, behavior:'smooth'});
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(function(link){
+      link.addEventListener('click', function(e){
+        const href = link.getAttribute('href');
+        if(!href || href === '#') return;
+        const target = document.querySelector(href);
+        if(!target) return;
+        e.preventDefault();
+        scrollToTarget(target);
+      });
+    });
+
+    const revealEls = document.querySelectorAll('.reveal');
+    let revealed = false;
+    function revealAll(){
+      if(revealed) return;
+      revealed = true;
+      revealEls.forEach(function(el){ el.classList.add('in'); });
+    }
+
+    if('IntersectionObserver' in window){
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: isMobile ? 0 : 0.05, rootMargin: isMobile ? '0px' : '0px 0px -40px 0px' });
+      revealEls.forEach(function(el){ io.observe(el); });
+      setTimeout(revealAll, 1200);
+    } else {
+      revealAll();
+    }
+  }catch(err){ console.error('scroll/reveal error:', err); }
+
+  try{
+    let plaintextOnly = false;
+    try{
+      const probe = document.createElement('div');
+      probe.contentEditable = 'plaintext-only';
+      plaintextOnly = probe.contentEditable === 'plaintext-only';
+    }catch(e){}
+
+    const KEYWORDS = new Set(('False None True and as assert async await break class continue def del elif ' +
+      'else except finally for from global if import in is lambda nonlocal not or pass raise return try ' +
+      'while with yield').split(' '));
+    const BUILTINS = new Set(('print input int float str bool len range type list dict set tuple abs round ' +
+      'min max sum sorted reversed enumerate zip open isinstance chr ord format').split(' '));
+    const TOKEN_RE = /(#[^\n]*)|([rRbBfFuU]{0,2}(?:"""[\s\S]*?(?:"""|$)|'''[\s\S]*?(?:'''|$)|"(?:[^"\\\n]|\\.)*"?|'(?:[^'\\\n]|\\.)*'?))|(\b\d+(?:\.\d+)?\b)|([A-Za-z_]\w*)/g;
+    const originals = new WeakMap();
+
+    function esc(s){ return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+    function highlight(src){
+      let out = '', last = 0, m;
+      TOKEN_RE.lastIndex = 0;
+      while((m = TOKEN_RE.exec(src))){
+        out += esc(src.slice(last, m.index));
+        const tok = esc(m[0]);
+        if(m[1]) out += '<span class="cm">' + tok + '</span>';
+        else if(m[2]) out += '<span class="str">' + tok + '</span>';
+        else if(m[3]) out += '<span class="num">' + tok + '</span>';
+        else if(KEYWORDS.has(m[0])) out += '<span class="kw">' + tok + '</span>';
+        else if(BUILTINS.has(m[0]) || /^[ \t]*\(/.test(src.substr(TOKEN_RE.lastIndex, 20)))
+          out += '<span class="fn">' + tok + '</span>';
+        else out += tok;
+        last = TOKEN_RE.lastIndex;
+      }
+      return out + esc(src.slice(last));
+    }
+
+    function updateGutter(block){
+      const pre = block.querySelector('pre');
+      const gutter = block.querySelector('.line-gutter');
+      if(!pre || !gutter) return;
+      const n = Math.max(1, pre.innerText.replace(/\n$/, '').split('\n').length);
+      if(gutter.children.length === n) return;
+      gutter.innerHTML = '';
+      for(let i = 1; i <= n; i++){
+        const span = document.createElement('span');
+        span.textContent = i;
+        gutter.appendChild(span);
+      }
+    }
+
+    function insertText(text){
+      if(document.execCommand && document.execCommand('insertText', false, text)) return;
+      const sel = window.getSelection();
+      if(!sel.rangeCount) return;
+      const r = sel.getRangeAt(0);
+      r.deleteContents();
+      const node = document.createTextNode(text);
+      r.insertNode(node);
+      r.setStartAfter(node);
+      r.collapse(true);
+      sel.removeAllRanges();
+      sel.addRange(r);
+    }
+
+    function textBeforeCaret(pre){
+      const sel = window.getSelection();
+      if(!sel.rangeCount) return '';
+      const caret = sel.getRangeAt(0);
+      const r = document.createRange();
+      r.selectNodeContents(pre);
+      r.setEnd(caret.startContainer, caret.startOffset);
+      let out = '';
+      (function walk(node){
+        node.childNodes.forEach(function(ch){
+          if(ch.nodeType === 3) out += ch.nodeValue;
+          else if(ch.nodeName === 'BR') out += '\n';
+          else {
+            if(/^(DIV|P)$/.test(ch.nodeName) && out && !out.endsWith('\n')) out += '\n';
+            walk(ch);
+          }
+        });
+      })(r.cloneContents());
+      return out;
+    }
+
+    window.resetCode = function(btn){
+      const block = btn.closest('.code-block');
+      const pre = block && block.querySelector('pre');
+      if(!pre || !originals.has(pre)) return;
+      pre.innerHTML = originals.get(pre);
+      block.classList.remove('edited');
+      btn.hidden = true;
+      updateGutter(block);
+    };
+
+    document.querySelectorAll('.code-block').forEach(function(block){
+      const pre = block.querySelector('pre');
+      if(!pre) return;
+      originals.set(pre, pre.innerHTML);
+
+      pre.setAttribute('contenteditable', plaintextOnly ? 'plaintext-only' : 'true');
+      pre.setAttribute('spellcheck', 'false');
+      pre.setAttribute('autocapitalize', 'off');
+      pre.setAttribute('autocorrect', 'off');
+      pre.setAttribute('translate', 'no');
+      pre.setAttribute('role', 'textbox');
+      pre.setAttribute('aria-multiline', 'true');
+      pre.setAttribute('aria-label', 'کد پایتون (قابل ویرایش؛ Ctrl+Enter برای اجرا)');
+
+      const actions = block.querySelector('.code-actions');
+      let resetBtn = null;
+      if(actions){
+        resetBtn = document.createElement('button');
+        resetBtn.className = 'code-btn reset-btn';
+        resetBtn.hidden = true;
+        resetBtn.title = 'برگرداندن کد اصلی';
+        resetBtn.innerHTML = '<span class="btn-icon">↺</span><span class="btn-text">بازنشانی</span>';
+        actions.appendChild(resetBtn);
+      }
+
+      pre.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' && (e.ctrlKey || e.metaKey)){
+          e.preventDefault();
+          const run = block.querySelector('.run-btn');
+          pre.blur();
+          if(run) window.runCode(run);
+          return;
+        }
+        if(e.key === 'Escape'){ pre.blur(); return; }
+        if(e.key === 'Tab' && !e.shiftKey){ e.preventDefault(); insertText('    '); return; }
+        if(e.key === 'Backspace' && !e.ctrlKey && !e.metaKey && window.getSelection().isCollapsed){
+          const current = textBeforeCaret(pre).split('\n').pop();
+          if(current.length >= 4 && /^ +$/.test(current)){
+            e.preventDefault();
+            for(let i = 0; i < (current.length % 4 || 4); i++) document.execCommand('delete');
+            return;
+          }
+        }
+        if(e.key === 'Enter' && !e.shiftKey && !e.isComposing){
+          const current = textBeforeCaret(pre).split('\n').pop();
+          let indent = (current.match(/^[ \t]*/) || [''])[0];
+          if(/:\s*(#.*)?$/.test(current)) indent += '    ';
+          if(indent){ e.preventDefault(); insertText('\n' + indent); }
+        }
+      });
+
+      pre.addEventListener('paste', function(e){
+        const data = e.clipboardData && e.clipboardData.getData('text/plain');
+        if(data == null) return;
+        e.preventDefault();
+        insertText(data.replace(/\r\n?/g, '\n').replace(/\t/g, '    '));
+      });
+
+      pre.addEventListener('input', function(){
+        block.classList.add('edited');
+        if(resetBtn) resetBtn.hidden = false;
+        updateGutter(block);
+      });
+
+      pre.addEventListener('blur', function(){
+        if(!block.classList.contains('edited')) return;
+        pre.innerHTML = highlight(pre.innerText.replace(/\n$/, ''));
+        updateGutter(block);
+      });
+    });
+  }catch(err){ console.error('editor error:', err); }
+
+  /* ═══════════════════════════════════════════════════════════
+     🧠  INTERACTIVE QUIZ LOGIC
+     ═══════════════════════════════════════════════════════════ */
+  try{
+    document.addEventListener('click', function(e){
+      const option = e.target.closest('.quiz-option');
+      if(!option) return;
+      
+      const container = option.closest('.quiz-options');
+      if(container.classList.contains('answered')) return; // Prevent re-answering
+      
+      const isCorrect = option.dataset.correct === 'true';
+      const feedback = container.nextElementSibling; // The .quiz-feedback div
+      
+      // Disable all options in this quiz
+      container.querySelectorAll('.quiz-option').forEach(opt => {
+        opt.classList.add('disabled');
+      });
+      
+      if(isCorrect){
+        option.classList.add('correct');
+        feedback.textContent = '✅ عالی بود! پاسخ درست است.';
+        feedback.className = 'quiz-feedback show success';
+      } else {
+        option.classList.add('wrong');
+        // Highlight the correct one
+        const correctOpt = container.querySelector('.quiz-option[data-correct="true"]');
+        if(correctOpt) correctOpt.classList.add('correct');
+        feedback.textContent = '❌ پاسخ نادرست بود. گزینه صحیح با رنگ سبز مشخص شد.';
+        feedback.className = 'quiz-feedback show error';
+      }
+      
+      container.classList.add('answered');
+    });
+  }catch(err){ console.error('quiz error:', err); }
+
+})();
+</script>
+
+</body>
+</html>
